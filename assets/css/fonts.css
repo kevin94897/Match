@@ -1,0 +1,54 @@
+/*
+ * Match — fuentes
+ * Poppins (SIL OFL, subset latin) y Open Sauce Sans (SIL OFL). Servidas desde
+ * el tema: sin llamadas a Google Fonts ni salto de layout.
+ */
+
+@font-face {
+	font-family: "Poppins";
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url("../fonts/poppins-regular.woff2") format("woff2");
+}
+
+@font-face {
+	font-family: "Poppins";
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src: url("../fonts/poppins-medium.woff2") format("woff2");
+}
+
+@font-face {
+	font-family: "Poppins";
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src: url("../fonts/poppins-semibold.woff2") format("woff2");
+}
+
+@font-face {
+	font-family: "Poppins";
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url("../fonts/poppins-bold.woff2") format("woff2");
+}
+
+@font-face {
+	font-family: "Open Sauce Sans";
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url("../fonts/open-sauce-sans-bold.woff2") format("woff2");
+}
+
+/* Titulares XL de las internas (Open Sauce One ExtraBold, SIL OFL) */
+@font-face {
+	font-family: "Open Sauce One";
+	font-style: normal;
+	font-weight: 800;
+	font-display: swap;
+	src: url("../fonts/open-sauce-one-extrabold.woff2") format("woff2");
+}

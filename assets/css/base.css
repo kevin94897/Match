@@ -1,0 +1,120 @@
+/* Match — base y layout */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+	margin: 0;
+	background: var(--match-azul-50);
+	color: var(--match-negro);
+	font-family: var(--match-font-text);
+	font-size: var(--match-fs-body);
+	line-height: var(--match-lh-body);
+	-webkit-font-smoothing: antialiased;
+}
+
+img, svg, video { max-width: 100%; height: auto; display: block; }
+
+a { color: var(--match-primario-500); }
+
+:where( a, button, input, select, textarea, [tabindex] ):focus-visible {
+	outline: 2px solid var(--match-primario-500);
+	outline-offset: 2px;
+	border-radius: 4px;
+}
+
+.screen-reader-text {
+	position: absolute;
+	width: 1px; height: 1px;
+	margin: -1px; padding: 0;
+	overflow: hidden;
+	clip-path: inset( 50% );
+	white-space: nowrap;
+}
+
+.skip-link:focus {
+	position: fixed;
+	inset-block-start: 8px;
+	inset-inline-start: 8px;
+	z-index: 100;
+	background: var(--match-blanco);
+	padding: 12px 20px;
+	border-radius: var(--match-radius-8);
+}
+
+/* --- Titulares --- */
+.match-h2, .match-h2-xl {
+	font-family: var(--match-font-display);
+	font-weight: 700;
+	line-height: var(--match-lh-head);
+	color: var(--match-primario-500);
+	margin: 0;
+	text-wrap: balance;
+}
+
+.match-h2 { font-size: var(--match-fs-h2); }
+.match-h2-xl { font-size: var(--match-fs-h2-xl); }
+
+/*
+ * En el diseño los titulares llevan una segunda línea en gris. No es un
+ * realce decorativo: separa el enunciado de su desarrollo.
+ */
+.match-h2 .is-secondary,
+.match-h2-xl .is-secondary { color: var(--match-azul-400); display: block; }
+
+.match-eyebrow {
+	display: flex;
+	align-items: center;
+	gap: var(--match-space-16);
+	font-size: var(--match-fs-eyebrow);
+	font-weight: 500;
+	line-height: var(--match-lh-eyebrow);
+	color: var(--match-negro);
+	margin: 0;
+}
+
+.match-eyebrow__mark {
+	flex: 0 0 auto;
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	border: 2px solid currentColor;
+}
+
+/* --- Layout de secciones --- */
+.match-section { padding-block: var(--match-space-140); }
+.match-section--tight { padding-block: var(--match-space-80); }
+.match-section--light { background: var(--match-azul-50); }
+.match-section--paper { background: var(--match-neutral-100); }
+
+.match-container {
+	width: min( var(--match-container), 100% - ( var(--match-gutter) * 2 ) );
+	margin-inline: auto;
+}
+
+/* Encabezado de sección: eyebrow a la izquierda, titular a la derecha */
+.match-section__head {
+	display: grid;
+	grid-template-columns: 296px 1fr;
+	gap: var(--match-space-180);
+	align-items: start;
+	margin-block-end: var(--match-space-140);
+}
+
+@media ( max-width: 1024px ) {
+	.match-section { padding-block: var(--match-space-80); }
+	.match-section__head {
+		grid-template-columns: 1fr;
+		gap: var(--match-space-24);
+		margin-block-end: var(--match-space-48);
+	}
+}
+
+/* --- Escala tipográfica como utilidades --- */
+.match-h4 { font-size: var(--match-fs-h4); font-weight: 600; line-height: var(--match-lh-h4); margin: 0; }
+.match-xxl { font-size: var(--match-fs-xxl); font-weight: 500; line-height: var(--match-lh-eyebrow); }
+.match-body-lg { font-size: var(--match-fs-body-lg); font-weight: 500; line-height: var(--match-lh-body); }
+.match-body { font-size: var(--match-fs-body); line-height: var(--match-lh-body); }
+.match-body-sm { font-size: var(--match-fs-body-sm); line-height: 1; }
+.match-nav-text { font-size: var(--match-fs-nav); font-weight: 500; line-height: var(--match-lh-nav); }

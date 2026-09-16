@@ -1,0 +1,131 @@
+/*
+ * Match — design tokens
+ * Extraídos de las variables del archivo de Figma (Home, node 3502:3318).
+ * Única fuente de verdad de color, spacing, radios y tipografía. El plugin
+ * del Job Board consume estos mismos tokens: no renombrar sin avisar.
+ */
+
+:root {
+	/* --- Marca --- */
+	--match-primario-50:  #f5f5f8;
+	--match-primario-400: #615e91;
+	--match-primario-500: #0f0b59;
+	--match-primario-800: #080630;
+	--match-violeta:      #8781ff; /* borde luminoso de los botones primarios */
+
+	/* --- Celeste: el azul del isotipo --- */
+	--match-celeste-500: #0086f1;
+	--match-celeste-600: #006fc7;
+
+	/* --- Azul neutral: la escala que estructura la UI --- */
+	--match-azul-50:  #f6f6f6;
+	--match-azul-100: #e3e3e8;
+	--match-azul-200: #d3d2da;
+	--match-azul-300: #b4b3c1;
+	--match-azul-400: #8a899f;
+	--match-azul-500: #616076;
+	--match-azul-600: #4a495a;
+	--match-azul-700: #383743;
+	--match-azul-800: #25252d;
+	--match-azul-900: #17171c;
+
+	/* --- Neutros cálidos --- */
+	--match-neutral-100: #f5f5f5;
+	--match-neutral-200: #e6e6e6;
+	--match-neutral-300: #868686;
+	--match-neutral-400: #5e5e5e;
+	--match-neutral-500: #2c2c2c;
+	--match-negro:       #1c1c1c;
+	--match-blanco:      #ffffff;
+
+	/* --- Semánticos --- */
+	--match-exito:  #059669;
+	--match-alerta: #d97706;
+	--match-error:  #dc2626;
+
+	/* --- Spacing: la escala real del archivo --- */
+	--match-space-4:    4px;
+	--match-space-8:    8px;
+	--match-space-12:  12px;
+	--match-space-16:  16px;
+	--match-space-24:  24px;
+	--match-space-32:  32px;
+	--match-space-40:  40px;
+	--match-space-48:  48px;
+	--match-space-56:  56px;
+	--match-space-64:  64px;
+	--match-space-80:  80px;
+	--match-space-120: 120px;
+	--match-space-140: 140px;
+	--match-space-160: 160px;
+	--match-space-180: 180px;
+
+	/* --- Radios --- */
+	--match-radius-4:    4px;
+	--match-radius-8:    8px;
+	--match-radius-12:  12px;
+	--match-radius-16:  16px;
+	--match-radius-24:  24px;
+	--match-radius-full: 999px;
+
+	/* --- Tipografía ---
+	 * Dos familias con roles claros: Open Sauce Sans solo para los titulares
+	 * grandes, Poppins para todo lo demás.
+	 */
+	--match-font-display: "Open Sauce Sans", "Poppins", system-ui, sans-serif;
+	--match-font-text: "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+	/* Escala tipográfica del archivo */
+	--match-fs-body-sm: 13px;
+	--match-fs-tag:     14px;
+	--match-fs-nav:     15px;
+	--match-fs-body:    16px;
+	--match-fs-eyebrow: 16px;
+	--match-fs-body-lg: 18px;
+	--match-fs-xxl:     20px;
+	--match-fs-h4:      24px;
+	--match-fs-h3:      40px;
+	--match-fs-h2:      56px;
+	--match-fs-stat-lg: 64px;
+	--match-fs-stat:    96px;
+	--match-fs-h2-xl:  110px;
+
+	--match-lh-tight:   1.1;
+	--match-lh-head:    1.2;
+	--match-lh-h4:      1.4;
+	--match-lh-eyebrow: 1.5;
+	--match-lh-body:    1.6;
+	--match-lh-nav:     1.7;
+	--match-lh-btn:     22px;
+
+	/* --- Layout --- */
+	--match-container: 1680px;
+	--match-container-narrow: 1180px;
+	--match-gutter: var(--match-space-120);
+	--match-navbar-h: 80px;
+
+	/* --- Sombras y efectos --- */
+	--match-shadow-btn:  -1px 2px 12px -6px rgba( 0, 0, 0, 0.32 );
+	--match-shadow-glow: 0 0 24px 0 rgba( 255, 255, 255, 0.25 );
+	--match-blur-glass:  16px;
+}
+
+@media ( max-width: 1024px ) {
+	:root {
+		--match-gutter: var(--match-space-40);
+		--match-fs-h2: 38px;
+		--match-fs-h2-xl: 64px;
+		--match-fs-h3: 30px;
+		--match-fs-stat: 64px;
+		--match-fs-stat-lg: 44px;
+	}
+}
+
+@media ( max-width: 600px ) {
+	:root {
+		--match-gutter: var(--match-space-24);
+		--match-fs-h2: 30px;
+		--match-fs-h2-xl: 44px;
+		--match-fs-h4: 20px;
+	}
+}

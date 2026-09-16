@@ -1,0 +1,29 @@
+# Sistema
+.DS_Store
+Thumbs.db
+._*
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# Dependencias y builds (no hay proceso de build hoy; por si se agrega)
+node_modules/
+vendor/
+dist/
+*.log
+
+# Entorno y credenciales
+.env
+.env.*
+*.pem
+
+# Paquetes y respaldos
+*.zip
+*.tar.gz
+*.bak
+*.original.md
+
+# Herramientas locales
+.claude/
