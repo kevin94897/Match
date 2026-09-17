@@ -2,12 +2,22 @@
 /**
  * Template Name: Solución
  *
- * Interna de solución (Figma: Executive, node 3232:4955). El contenido sale
- * de inc/soluciones-data.php según el slug de la página.
+ * Interna de solución (Figma: Executive 3232:4955, Outplacement 3280:450).
+ * El contenido sale de inc/soluciones-data.php según el slug de la página;
+ * la clase match-sol--{tema} en <body> activa la paleta de cada solución
+ * (ver "Temas" en assets/css/solucion.css).
  */
 defined( 'ABSPATH' ) || exit;
 
 $solucion = match_solucion_data( get_post_field( 'post_name' ) ) ?? match_solucion_data( 'executive' );
+
+add_filter(
+	'body_class',
+	static function ( array $classes ) use ( $solucion ): array {
+		$classes[] = 'match-sol--' . sanitize_html_class( $solucion['theme'] );
+		return $classes;
+	}
+);
 
 get_header();
 

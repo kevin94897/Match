@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || exit;
 get_header();
 
 $palettes = array(
-	__( 'Marca', 'match' )        => array( 'primario-50', 'primario-400', 'primario-500', 'primario-800', 'violeta', 'celeste-500', 'celeste-600' ),
+	__( 'Marca', 'match' )        => array( 'primario-50', 'primario-400', 'primario-500', 'primario-800', 'violeta', 'celeste-500', 'celeste-600', 'celeste-700', 'celeste-800' ),
 	__( 'Azul neutral', 'match' ) => array( 'azul-50', 'azul-100', 'azul-200', 'azul-300', 'azul-400', 'azul-500', 'azul-600', 'azul-700', 'azul-800', 'azul-900' ),
 	__( 'Neutros', 'match' )      => array( 'neutral-100', 'neutral-200', 'neutral-300', 'neutral-400', 'neutral-500', 'negro', 'blanco' ),
 	__( 'Semánticos', 'match' )   => array( 'exito', 'alerta', 'error' ),

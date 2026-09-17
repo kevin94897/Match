@@ -56,7 +56,7 @@ $soluciones = array(
 			<?php
 			$style = '--overlay:' . $item['overlay'] . ( $item['label'] ? ';--label:' . $item['label'] : '' );
 			?>
-			<article class="match-accordion__panel<?php echo 0 === $index ? ' is-open' : ''; ?>" id="sol-<?php echo esc_attr( $item['slug'] ); ?>" style="<?php echo esc_attr( $style ); ?>">
+			<article class="match-accordion__panel<?php echo 0 === $index ? ' is-open' : ''; ?>" id="sol-<?php echo esc_attr( $item['slug'] ); ?>" style="<?php echo esc_attr( $style ); ?>" data-aos="fade-up" data-aos-delay="<?php echo (int) ( $index * 100 ); ?>">
 				<div class="match-accordion__visual">
 					<img src="<?php echo esc_url( get_theme_file_uri( 'assets/img/solucion-' . $item['slug'] . '.webp' ) ); ?>" alt="" loading="lazy" decoding="async">
 				</div>

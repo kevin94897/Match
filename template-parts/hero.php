@@ -15,13 +15,13 @@ $logos     = match_client_logos();
 	<div class="match-hero__inner">
 		<h1 class="match-hero__wordmark"><?php echo match_logo(); // phpcs:ignore WordPress.Security.EscapeOutput ?></h1>
 
-		<p class="match-hero__lead">
+		<p class="match-hero__lead" data-aos="fade-up">
 			<?php esc_html_e( 'Sé parte de la base de datos ejecutiva', 'match' ); ?>
 			<strong><?php esc_html_e( 'más importante de la región', 'match' ); ?></strong>.
 			<?php esc_html_e( 'Las empresas líderes nos confían sus búsquedas.', 'match' ); ?>
 		</p>
 
-		<div class="match-glass match-hero__card">
+		<div class="match-glass match-hero__card" data-aos="fade-up" data-aos-delay="150">
 			<div class="match-hero__card-text">
 				<p class="match-hero__card-title"><?php esc_html_e( 'Da el primer paso', 'match' ); ?></p>
 				<p class="match-hero__card-sub"><?php esc_html_e( 'Accede a las posiciones más exclusivas del mercado ejecutivo', 'match' ); ?></p>
@@ -31,7 +31,7 @@ $logos     = match_client_logos();
 			</a>
 		</div>
 
-		<div class="match-hero__bottom">
+		<div class="match-hero__bottom" data-aos="fade-up" data-aos-delay="300">
 			<p class="match-hero__proof">
 				<?php
 				printf(

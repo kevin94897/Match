@@ -8,9 +8,9 @@ defined( 'ABSPATH' ) || exit;
 $logos = match_client_logos();
 ?>
 <section class="match-sol-hero">
-	<h1 class="match-sol-hero__title"><?php echo esc_html( $args['title'] ); ?>.</h1>
+	<h1 class="match-sol-hero__title" data-aos="fade-up"><?php echo esc_html( $args['title'] ); ?>.</h1>
 
-	<div class="match-sol-hero__lead">
+	<div class="match-sol-hero__lead" data-aos="fade-up" data-aos-delay="150">
 		<p class="match-sol-hero__kicker">
 			<?php echo match_icon( 'plus-circle' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			<?php echo esc_html( $args['kicker'] ); ?>
@@ -21,7 +21,7 @@ $logos = match_client_logos();
 		</p>
 	</div>
 
-	<div class="match-trust">
+	<div class="match-trust" data-aos="fade-up" data-aos-delay="300">
 		<div class="match-trust__chips">
 			<?php foreach ( $args['trust'] as $slug ) : ?>
 				<span class="match-trust__chip"><img src="<?php echo esc_url( get_theme_file_uri( "assets/img/logos/{$slug}.png" ) ); ?>" alt="<?php echo esc_attr( $logos[ $slug ] ?? $slug ); ?>" loading="lazy" decoding="async"></span>

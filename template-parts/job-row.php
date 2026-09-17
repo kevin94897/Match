@@ -1,6 +1,7 @@
 <?php
 /**
  * Fila de vacante del Job Board en la portada (Figma: Card — Vacante (Row)).
+ * Los bloques .match-job__reveal se despliegan con grid-template-rows (home.css).
  *
  * @var array $args { job: array (ver match_job_data), open: bool }
  */
@@ -44,16 +45,19 @@ $row_id = 'job-' . sanitize_html_class( $job['id'] );
 				</div>
 			</div>
 
-			<ul class="match-job__meta">
-				<?php if ( $job['type'] ) : ?>
-					<li><?php echo match_icon( 'meta-location' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php echo esc_html( $job['type'] ); ?></li>
-				<?php endif; ?>
-				<?php if ( $job['place'] ) : ?>
-					<li><?php echo match_icon( 'meta-clock' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php echo esc_html( $job['place'] ); ?></li>
-				<?php endif; ?>
-			</ul>
+			<div class="match-job__reveal">
+				<ul class="match-job__meta">
+					<?php if ( $job['type'] ) : ?>
+						<li><?php echo match_icon( 'meta-location' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php echo esc_html( $job['type'] ); ?></li>
+					<?php endif; ?>
+					<?php if ( $job['place'] ) : ?>
+						<li><?php echo match_icon( 'meta-clock' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php echo esc_html( $job['place'] ); ?></li>
+					<?php endif; ?>
+				</ul>
+			</div>
 		</div>
 
+		<div class="match-job__reveal">
 		<div class="match-job__foot">
 			<ul class="match-job__tags">
 				<?php foreach ( array_slice( $job['skills'], 0, 4 ) as $skill ) : ?>
@@ -74,6 +78,7 @@ $row_id = 'job-' . sanitize_html_class( $job['id'] );
 					<span class="match-btn__icon"><?php echo match_icon( 'arrow-dark' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
 				</a>
 			</div>
+		</div>
 		</div>
 	</div>
 

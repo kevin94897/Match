@@ -1,0 +1,19 @@
+{
+  "name": "match-theme",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Tema de WordPress de Match. Tailwind se compila con el CLI; AOS, Embla y Lenis se copian a assets/vendor.",
+  "scripts": {
+    "build": "npm run build:css && npm run vendor",
+    "build:css": "tailwindcss -i assets/css/tailwind.src.css -o assets/css/tailwind.css --minify",
+    "watch": "tailwindcss -i assets/css/tailwind.src.css -o assets/css/tailwind.css --watch",
+    "vendor": "node scripts/vendor.mjs"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.0",
+    "aos": "^2.3.4",
+    "embla-carousel": "^8.6.0",
+    "lenis": "^1.3.26",
+    "tailwindcss": "^4.1.0"
+  }
+}

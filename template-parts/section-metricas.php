@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || exit;
 	);
 	?>
 
-	<div class="match-metricas__grid">
+	<div class="match-metricas__grid" data-aos="fade-up" data-aos-delay="100">
 		<div class="match-stat-hero">
 			<div class="match-stat-hero__bg" aria-hidden="true"></div>
 			<figure class="match-stat-hero__figure" aria-hidden="true">

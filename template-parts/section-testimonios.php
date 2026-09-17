@@ -35,7 +35,7 @@ unset( $logos['aenza'] );
 			</div>
 		</div>
 
-		<div class="match-testimonios__body">
+		<div class="match-testimonios__body" data-aos="fade-up" data-aos-delay="100">
 			<p class="match-testimonios__intro">
 				<?php esc_html_e( 'No son solo palabras.', 'match' ); ?>
 				<span class="is-secondary"><?php esc_html_e( 'Lo dicen las empresas que nos confiaron sus búsquedas más difíciles.', 'match' ); ?></span>

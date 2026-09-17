@@ -230,45 +230,47 @@ function match_job_data( int $job_id ): array {
 }
 
 /**
- * Vacantes de la portada: las últimas del Job Board o, si aún no hay
- * sincronización, las cuatro filas de ejemplo del diseño.
+ * Vacantes de la portada: las últimas del Job Board (con los filtros de la
+ * URL) o, si aún no hay sincronización, las cuatro filas de ejemplo.
  */
 function match_home_jobs( int $count = 4 ): array {
+	return match_jobs_list( match_jobs_current_filters(), $count )['jobs'];
+}
+
+/**
+ * Las cuatro filas de ejemplo del diseño, para revisar la maqueta sin CRM.
+ */
+function match_demo_jobs(): array {
 	$jobs = array();
-
-	if ( match_job_board_active() ) {
-		$query = MJB_Query::featured( $count );
-		foreach ( $query->posts as $post ) {
-			$jobs[] = match_job_data( $post->ID );
-		}
-	}
-
-	if ( $jobs ) {
-		return $jobs;
-	}
-
 	$logo = fn( string $slug ): string => get_theme_file_uri( "assets/img/logos/{$slug}.png" );
+	// Las cuatro del diseño más dos, para que los filtros de ejemplo tengan
+	// con qué trabajar. La última columna son los valores de filtro
+	// (ubicación, nivel, modalidad, industria) que usa inc/jobs-filters.php.
 	$demo = array(
-		array( 'novatech', 'NovaTech', 'Senior Product Manager de Growth', 'S/ 9,000–13,000 /mes', 'Tiempo completo, ejecutivo', 'Remoto, Perú', array( 'Roadmap', 'Agile', 'Stakeholders', 'Priorización' ) ),
-		array( 'intercorp', 'Grupo Intercorp', 'Analista de Datos y Business Intelligence', 'S/ 6,000–8,500 /mes', 'Tiempo completo', 'Híbrido, Lima', array( 'SQL', 'Power BI', 'ETL' ) ),
-		array( 'abb', 'ABB Technology', 'Community Manager de Redes Sociales', 'S/ 3,500–5,000 /mes', 'Tiempo completo', 'Presencial, Lima', array( 'Contenido', 'Meta Ads', 'Analítica' ) ),
-		array( 'mmg', 'MMG Limited', 'Gerente de Finanzas Corporativas', 'S/ 10,000–14,000 /mes', 'Tiempo completo, ejecutivo', 'Presencial, Lima', array( 'Finanzas', 'Tesorería', 'Minería' ) ),
+		array( 'novatech', 'NovaTech', 'Senior Product Manager de Growth', 'S/ 9,000–13,000 /mes', 'Tiempo completo, ejecutivo', 'Remoto, Perú', array( 'Roadmap', 'Agile', 'Stakeholders', 'Priorización' ), array( 'Perú', 'Ejecutivo', 'Remoto', 'Tecnología' ) ),
+		array( 'intercorp', 'Grupo Intercorp', 'Analista de Datos y Business Intelligence', 'S/ 6,000–8,500 /mes', 'Tiempo completo', 'Híbrido, Lima', array( 'SQL', 'Power BI', 'ETL' ), array( 'Lima', 'Analista', 'Híbrido', 'Retail' ) ),
+		array( 'abb', 'ABB Technology', 'Community Manager de Redes Sociales', 'S/ 3,500–5,000 /mes', 'Tiempo completo', 'Presencial, Lima', array( 'Contenido', 'Meta Ads', 'Analítica' ), array( 'Lima', 'Junior', 'Presencial', 'Industrial' ) ),
+		array( 'mmg', 'MMG Limited', 'Gerente de Finanzas Corporativas', 'S/ 10,000–14,000 /mes', 'Tiempo completo, ejecutivo', 'Presencial, Lima', array( 'Finanzas', 'Tesorería', 'Minería' ), array( 'Lima', 'Gerente', 'Presencial', 'Minería' ) ),
+		array( 'beat', 'Beat', 'Country Manager', 'S/ 15,000–20,000 /mes', 'Tiempo completo, ejecutivo', 'Híbrido, Lima', array( 'Liderazgo', 'P&L', 'Expansión' ), array( 'Lima', 'Gerente', 'Híbrido', 'Tecnología' ) ),
+		array( 'alfa-laval', 'Alfa Laval', 'Ingeniero de Ventas Industriales', 'S/ 7,000–9,000 /mes', 'Tiempo completo', 'Remoto, Arequipa', array( 'Ventas B2B', 'Procesos', 'CRM' ), array( 'Arequipa', 'Senior', 'Remoto', 'Industrial' ) ),
 	);
 
-	foreach ( $demo as $i => list( $slug, $company, $title, $salary, $type, $place, $skills ) ) {
+	foreach ( $demo as $i => list( $slug, $company, $title, $salary, $type, $place, $skills, $filters ) ) {
 		$jobs[] = array(
 			'id'       => 'demo-' . $i,
 			'company'  => $company,
 			'logo'     => $logo( $slug ),
 			'title'    => $title,
-			'url'      => match_jobs_url(),
+			'url'      => add_query_arg( 'vacante', 'demo-' . $i, match_jobboard_url() ),
 			'salary'   => $salary,
 			'type'     => $type,
 			'place'    => $place,
 			'skills'   => $skills,
 			'date'     => '8 abr, 2026',
 			'datetime' => '2026-04-08',
-			'saved'    => false,
+			'saved'    => is_user_logged_in() && function_exists( 'match_saved_map' ) && isset( match_saved_map()[ 'demo-' . $i ] ),
+			'logo_bg'  => 'novatech' === $slug ? 'var(--match-azul-900)' : '', // logo blanco sobre transparente
+			'filters'  => array_combine( array( 'ubicacion', 'nivel', 'modalidad', 'industria' ), $filters ),
 		);
 	}
 

@@ -1,0 +1,88 @@
+/*
+ * Match — entrada de Tailwind v4. Se compila a tailwind.css con `npm run build`.
+ *
+ * Reglas del juego:
+ * - Sin preflight: el reset del tema vive en base.css y el CSS BEM existente
+ *   no debe cambiar de aspecto por meter Tailwind.
+ * - Las utilidades se importan SIN capa: el CSS BEM no está en @layer, y una
+ *   regla sin capa siempre le ganaría a una utilidad en capa. Así, con
+ *   tailwind.css encolado al final, la utilidad gana sobre el BEM a igual
+ *   especificidad.
+ * - Los tokens siguen en tokens.css (--match-*); aquí solo se exponen a
+ *   Tailwind con @theme inline para que bg-primario-500 y var(--match-primario-500)
+ *   sean lo mismo.
+ */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css";
+
+@source "../../*.php";
+@source "../../inc/*.php";
+@source "../../template-parts/**/*.php";
+@source "../js/*.js";
+
+@theme inline {
+	/* Colores = tokens del tema */
+	--color-*: initial;
+	--color-primario-50: var(--match-primario-50);
+	--color-primario-400: var(--match-primario-400);
+	--color-primario-500: var(--match-primario-500);
+	--color-primario-800: var(--match-primario-800);
+	--color-violeta: var(--match-violeta);
+	--color-celeste-500: var(--match-celeste-500);
+	--color-celeste-600: var(--match-celeste-600);
+	--color-celeste-700: var(--match-celeste-700);
+	--color-celeste-800: var(--match-celeste-800);
+	--color-azul-50: var(--match-azul-50);
+	--color-azul-100: var(--match-azul-100);
+	--color-azul-200: var(--match-azul-200);
+	--color-azul-300: var(--match-azul-300);
+	--color-azul-400: var(--match-azul-400);
+	--color-azul-500: var(--match-azul-500);
+	--color-azul-600: var(--match-azul-600);
+	--color-azul-700: var(--match-azul-700);
+	--color-azul-800: var(--match-azul-800);
+	--color-azul-900: var(--match-azul-900);
+	--color-neutral-100: var(--match-neutral-100);
+	--color-neutral-200: var(--match-neutral-200);
+	--color-neutral-300: var(--match-neutral-300);
+	--color-neutral-400: var(--match-neutral-400);
+	--color-neutral-500: var(--match-neutral-500);
+	--color-negro: var(--match-negro);
+	--color-blanco: var(--match-blanco);
+	--color-exito: var(--match-exito);
+	--color-alerta: var(--match-alerta);
+	--color-error: var(--match-error);
+	--color-white: #fff;
+	--color-black: #000;
+	--color-transparent: transparent;
+	--color-current: currentColor;
+
+	/* Tipografía */
+	--font-*: initial;
+	--font-display: var(--match-font-display);
+	--font-text: var(--match-font-text);
+
+	/* Radios: rounded-8, rounded-16, rounded-24, rounded-full */
+	--radius-*: initial;
+	--radius-4: var(--match-radius-4);
+	--radius-8: var(--match-radius-8);
+	--radius-12: var(--match-radius-12);
+	--radius-16: var(--match-radius-16);
+	--radius-24: var(--match-radius-24);
+	--radius-full: var(--match-radius-full);
+
+	/* Breakpoints alineados a las media queries del tema (600 / 1024 / 1440) */
+	--breakpoint-*: initial;
+	--breakpoint-sm: 601px;
+	--breakpoint-md: 1025px;
+	--breakpoint-lg: 1441px;
+
+	--shadow-btn: var(--match-shadow-btn);
+	--shadow-glow: var(--match-shadow-glow);
+}
+
+/* Ajustes de AOS: sin animación cuando el usuario lo pide */
+@media ( prefers-reduced-motion: reduce ) {
+	[data-aos] { opacity: 1 !important; transform: none !important; transition: none !important; }
+}

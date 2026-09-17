@@ -2,9 +2,16 @@
 /**
  * Contenido de las internas de solución.
  *
- * Por ahora es fijo (Figma: Executive, node 3232:4955). Cuando el cliente
- * confirme los textos de Assessment, Outplacement y Personnel se agregan
- * aquí o se migran a campos del editor.
+ * Por ahora es fijo (Figma: Executive 3232:4955, Outplacement 3280:450).
+ * Cuando el cliente confirme los textos de Assessment y Personnel se
+ * agregan aquí o se migran a campos del editor.
+ *
+ * Claves por solución:
+ * - theme         Sufijo de la clase match-sol--{theme} en <body>; activa la
+ *                 paleta en assets/css/solucion.css.
+ * - logo          SVG del lockup "match + solución" del diferenciador.
+ * - levels_title  Titular de la sección de perfiles/audiencias, en dos líneas.
+ * - levels_icon   Icono opcional en la esquina de cada tarjeta de nivel.
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -18,6 +25,8 @@ function match_solucion_data( string $slug ): ?array {
 	$data = array(
 		'executive' => array(
 			'title'   => 'Executive',
+			'theme'   => 'executive',
+			'logo'    => 'assets/img/executive/logo-executive.svg',
 			'kicker'  => __( 'Headhunting', 'match' ),
 			'lead'    => __( 'No usamos avisos.', 'match' ),
 			'lead_2'  => __( 'Vamos directo a buscar al líder que ya está trabajando en tu competencia — mapeo directo, sin publicaciones ni intermediarios.', 'match' ),
@@ -57,6 +66,9 @@ function match_solucion_data( string $slug ): ?array {
 				array( __( 'C-Level', 'match' ), $img( 'executive/nivel-clevel.webp' ) ),
 				array( __( 'Directores', 'match' ), $img( 'executive/nivel-directores.webp' ) ),
 			),
+			'levels_title'   => __( 'Los perfiles que', 'match' ),
+			'levels_title_2' => __( 'acompañamos.', 'match' ),
+			'levels_icon'    => '',
 			'scope'   => __( 'Cubrimos toda la alta dirección.', 'match' ),
 			'scope_2' => __( 'Desde Board Members hasta gerencias corporativas, mapeamos el talento exacto que tu organización necesita en cada nivel.', 'match' ),
 			'clients' => array( 'mmg', 'alfa-laval', 'olx', 'abb', 'beat', 'intercorp' ),
@@ -82,6 +94,68 @@ function match_solucion_data( string $slug ): ?array {
 			'reviews_photo' => $img( 'executive/testimonios-dark.webp' ),
 			'contact_lead'  => __( 'Cuéntanos qué necesitas — hablemos de tu próxima búsqueda de alta dirección.', 'match' ),
 			'toast'   => __( '¿Buscas un perfil ejecutivo?', 'match' ),
+		),
+
+		'outplacement' => array(
+			'title'   => 'Outplacement',
+			'theme'   => 'outplacement',
+			'logo'    => 'assets/img/outplacement/logo-outplacement.svg',
+			'kicker'  => __( 'Recolocación', 'match' ),
+			'lead'    => __( 'Acompañamos la salida,', 'match' ),
+			'lead_2'  => __( 'no solo la anunciamos. Rediseño de marca personal y entrenamiento en negociación para una recolocación rápida — individual (VIP) o corporativo (masivo).', 'match' ),
+			'trust'   => array( 'abb', 'olx', 'elektra', 'alfa-laval', 'intercorp' ),
+			'metrics' => array(
+				array( '30', __( 'Días récord en recolocación', 'match' ) ),
+				array( '7/10', __( 'Clientes mejoran su paquete salarial', 'match' ) ),
+				array( '72%', __( 'Más rápidos que la competencia', 'match' ) ),
+			),
+			'metrics_photo' => $img( 'outplacement/metricas.webp' ),
+			'cases'   => array(
+				array(
+					'stats'   => array(
+						array( __( '21 días', 'match' ), __( 'para la terna final', 'match' ) ),
+						array( __( '3 de 3', 'match' ), __( 'candidatos en entrevista final', 'match' ) ),
+						array( '100%', __( 'permanencia al año', 'match' ) ),
+					),
+					'quote'   => __( '“Tuvimos que reducir el equipo comercial y ninguno de los doce salió resentido. Ocho ya están trabajando en algo mejor.”', 'match' ),
+					'text'    => __( 'Acompañamos a cada persona con orientación individual, revisión de CV y contactos en el mercado. El proceso se cerró sin conflictos ni exposición pública.', 'match' ),
+					'role'    => __( 'Directora de Gestión Humana', 'match' ),
+					'company' => __( 'Empresa de consumo masivo · Perú', 'match' ),
+					'logo'    => $img( 'executive/logo-alfa-laval-blanco.png' ),
+				),
+			),
+			'levels'  => array(
+				array( __( 'Para ejecutivos', 'match' ), $img( 'outplacement/audiencia-ejecutivos.webp' ) ),
+				array( __( 'Para empresas', 'match' ), $img( 'outplacement/audiencia-empresas.webp' ) ),
+			),
+			'levels_title'   => __( 'A quién', 'match' ),
+			'levels_title_2' => __( 'acompañamos.', 'match' ),
+			'levels_icon'    => 'isotipo-circle',
+			'scope'   => __( 'Acompañamos ambos lados de la transición.', 'match' ),
+			'scope_2' => __( 'Empresas en reestructuración y profesionales que buscan su siguiente paso.', 'match' ),
+			'clients' => array( 'mmg', 'alfa-laval', 'olx', 'abb', 'beat', 'intercorp' ),
+			'years'   => '(2020-26)',
+			'reviews' => array(
+				array(
+					'text'  => __( 'Tengo el mejor de los conceptos del servicio de Match. Es inclusive mucho mejor que otras consultoras trasnacionales, tienen real conocimiento del mercado. Sus candidatos mejoraron mis expectativas referente a su competencia.', 'match' ),
+					'name'  => 'Christopher Candamo',
+					'role'  => __( 'Global Project Manager · Alfa Laval, Suecia', 'match' ),
+					'photo' => $img( 'executive/cliente-alfa-laval.png' ),
+					'bg'    => '#1e1c76',
+					'fit'   => 'contain',
+				),
+				array(
+					'text'  => __( 'Match funciona bien en momentos muy críticos. Fue de gran soporte con posiciones estratégicas del área técnica comercial. Su trabajo fue vital para que el negocio funcione. Lo hicieron súper rápido y bastante acertado.', 'match' ),
+					'name'  => 'Jose Chavez',
+					'role'  => __( 'Director de Operaciones · Uvirtual, México', 'match' ),
+					'photo' => $img( 'executive/cliente-uvirtual.png' ),
+					'bg'    => '#e0e0e0',
+					'fit'   => 'cover',
+				),
+			),
+			'reviews_photo' => $img( 'executive/testimonios-dark.webp' ),
+			'contact_lead'  => __( 'Cuéntanos tu caso — hablemos del programa que mejor se ajusta a tu situación.', 'match' ),
+			'toast'   => __( '¿Estás reestructurando tu equipo?', 'match' ),
 		),
 	);
 

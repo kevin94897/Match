@@ -31,7 +31,11 @@ add_action( 'after_setup_theme', 'match_setup' );
 /**
  * Estilos y scripts.
  *
- * Orden de carga: fuentes → tokens → base → componentes → header → footer.
+ * Orden de carga: fuentes → tokens → base → componentes → header → footer →
+ * (solución) → AOS → Lenis → Tailwind. Tailwind va al final a propósito: sus
+ * utilidades no están en @layer y deben ganarle al CSS BEM a igual
+ * especificidad. Se compila con `npm run build` (ver README).
+ *
  * Las fuentes se sirven localmente desde assets/fonts para no depender de
  * Google Fonts: evita el salto de layout y el problema de privacidad de
  * enviar la IP de cada visitante a un tercero.
@@ -59,9 +63,31 @@ function match_assets(): void {
 		wp_enqueue_style( 'match-styleguide', get_theme_file_uri( 'assets/css/styleguide.css' ), array( 'match-footer' ), MATCH_VERSION );
 	}
 
+	if ( match_is_jobboard_view() ) {
+		wp_enqueue_style( 'match-jobboard', get_theme_file_uri( 'assets/css/jobboard.css' ), array( 'match-footer' ), MATCH_VERSION );
+	}
+
 	wp_enqueue_style( 'match-style', get_stylesheet_uri(), array( 'match-header', 'match-footer' ), MATCH_VERSION );
 
-	wp_enqueue_script( 'match-app', get_theme_file_uri( 'assets/js/app.js' ), array(), MATCH_VERSION, true );
+	// Animaciones de entrada (AOS) y utilidades (Tailwind), siempre al final.
+	wp_enqueue_style( 'match-aos', get_theme_file_uri( 'assets/vendor/aos.css' ), array( 'match-style' ), '2.3.4' );
+	wp_enqueue_style( 'match-lenis', get_theme_file_uri( 'assets/vendor/lenis.css' ), array( 'match-aos' ), '1.3.26' );
+	wp_enqueue_style( 'match-tailwind', get_theme_file_uri( 'assets/css/tailwind.css' ), array( 'match-lenis' ), MATCH_VERSION );
+
+	wp_enqueue_script( 'aos', get_theme_file_uri( 'assets/vendor/aos.js' ), array(), '2.3.4', true );
+	wp_enqueue_script( 'embla-carousel', get_theme_file_uri( 'assets/vendor/embla-carousel.umd.js' ), array(), '8.6.0', true );
+	wp_enqueue_script( 'lenis', get_theme_file_uri( 'assets/vendor/lenis.min.js' ), array(), '1.3.26', true );
+	wp_enqueue_script( 'match-app', get_theme_file_uri( 'assets/js/app.js' ), array( 'aos', 'embla-carousel', 'lenis' ), MATCH_VERSION, true );
+	wp_localize_script(
+		'match-app',
+		'MatchJB',
+		array(
+			'rest'     => esc_url_raw( rest_url( 'match/v1/' ) ),
+			'nonce'    => wp_create_nonce( 'wp_rest' ),
+			'loggedIn' => is_user_logged_in(),
+			'loginUrl' => wp_login_url( home_url( add_query_arg( array(), $GLOBALS['wp']->request ?? '' ) ) ),
+		)
+	);
 
 	// El plugin hereda los tokens del tema.
 	if ( wp_style_is( 'mjb-front', 'registered' ) ) {
@@ -140,7 +166,7 @@ function match_company_logo( int $job_id, int $size = 96 ): void {
  */
 function match_section_head( string $eyebrow, string $line1, string $line2 = '', string $size = 'h2', bool $dark = false ): void {
 	?>
-	<header class="match-section__head<?php echo $dark ? ' match-section__head--dark' : ''; ?>">
+	<header class="match-section__head<?php echo $dark ? ' match-section__head--dark' : ''; ?>" data-aos="fade-up">
 		<p class="match-eyebrow">
 			<span class="match-eyebrow__mark" aria-hidden="true"><?php echo match_icon( $dark ? 'eyebrow-mark-light' : 'eyebrow-mark' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
 			<?php echo esc_html( $eyebrow ); ?>
@@ -231,4 +257,6 @@ add_action( 'admin_post_match_contact', 'match_handle_contact' );
 add_action( 'admin_post_nopriv_match_contact', 'match_handle_contact' );
 
 require_once get_theme_file_path( 'inc/template-tags.php' );
+require_once get_theme_file_path( 'inc/jobs-filters.php' );
+require_once get_theme_file_path( 'inc/jobboard.php' );
 require_once get_theme_file_path( 'inc/soluciones-data.php' );

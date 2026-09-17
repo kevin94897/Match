@@ -7,7 +7,7 @@
  */
 defined( 'ABSPATH' ) || exit;
 
-$account_url   = is_user_logged_in() ? home_url( '/mi-cuenta/' ) : wp_login_url();
+$account_url   = is_user_logged_in() ? match_jobboard_url() : wp_login_url( match_jobboard_url() );
 $account_label = is_user_logged_in() ? __( 'Mi cuenta', 'match' ) : __( 'Iniciar sesión', 'match' );
 ?>
 <header class="match-navbar" id="match-navbar">

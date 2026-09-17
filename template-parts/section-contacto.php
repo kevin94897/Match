@@ -14,7 +14,7 @@ $profile = isset( $_GET['perfil'] ) && 'profesional' === $_GET['perfil'] ? 'prof
 $lead       = $args['lead'] ?? __( 'Cuéntanos qué necesitas', 'match' );
 $lead_muted = array_key_exists( 'lead_muted', (array) $args ) ? $args['lead_muted'] : __( '— ya sea headhunting, evaluación de talento u outplacement.', 'match' );
 ?>
-<section class="match-contacto" id="contacto">
+<section class="match-contacto" id="contacto" data-aos="fade-up">
 	<div class="match-contacto__inner">
 		<div class="match-contacto__bg" aria-hidden="true">
 			<img src="<?php echo esc_url( get_theme_file_uri( 'assets/img/contacto-bg.webp' ) ); ?>" alt="" loading="lazy" decoding="async">

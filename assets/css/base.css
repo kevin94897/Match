@@ -76,8 +76,8 @@ a { color: var(--match-primario-500); }
 
 .match-eyebrow__mark {
 	flex: 0 0 auto;
-	width: 24px;
-	height: 24px;
+	width: 30px;
+	height: 30px;
 	border-radius: 50%;
 	border: 2px solid currentColor;
 }
