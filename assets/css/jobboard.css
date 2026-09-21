@@ -244,6 +244,98 @@
 	color: var(--match-blanco);
 }
 
+/* ============ Registro (Figma 4341:3554 / 4462:3) ============
+ * Mismo shell que el login (.match-login-page*, .match-login-card, arriba):
+ * paso 1 solo agrega el campo de correo (ya cubierto por .match-field) y
+ * paso 2 cambia el contenido de la card por este dropzone. El JS que ya
+ * mueve el archivo (assets/js/app.js, sección "caja de CV") funciona con
+ * cualquier [data-dropzone]/[data-dropzone-input]/[data-dropzone-hint], así
+ * que esto es solo la variante visual oscura para la card de vidrio.
+ */
+.match-login-card__subtitle {
+	margin: 0;
+	font-size: var(--match-fs-xxl);
+	font-weight: 500;
+	color: var(--match-blanco);
+	text-align: center;
+}
+
+.match-register-drop-wrap {
+	display: flex;
+	flex-direction: column;
+	gap: var(--match-space-8);
+	width: 100%;
+}
+
+.match-register-drop {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: var(--match-space-8);
+	height: 180px;
+	padding: var(--match-space-16);
+	border: 1.5px dashed rgba(255, 255, 255, 0.3);
+	border-radius: var(--match-radius-16);
+	background: rgba(255, 255, 255, 0.08);
+	cursor: pointer;
+	text-align: center;
+	transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.match-register-drop.is-dragover {
+	border-color: var(--match-blanco);
+	background: rgba(255, 255, 255, 0.14);
+}
+
+.match-register-drop.is-ready {
+	border-style: solid;
+	border-color: var(--match-exito);
+}
+
+.match-register-drop.is-error {
+	border-color: var(--match-error);
+}
+
+.match-register-drop__icon {
+	display: block;
+	width: 24px;
+	height: 24px;
+}
+
+.match-register-drop__icon svg {
+	width: 100%;
+	height: 100%;
+}
+
+.match-register-drop__title {
+	margin: 0;
+	font-size: var(--match-fs-tag);
+	font-weight: 500;
+	color: rgba(255, 255, 255, 0.75);
+}
+
+.match-register-drop__hint {
+	margin: 0;
+	font-size: var(--match-fs-body-sm);
+	color: rgba(255, 255, 255, 0.35);
+}
+
+.match-register-drop.is-ready .match-register-drop__hint {
+	color: var(--match-exito);
+}
+
+.match-register-drop.is-error .match-register-drop__hint {
+	color: var(--match-error);
+}
+
+.match-register-drop__note {
+	margin: 0;
+	font-size: var(--match-fs-body-sm);
+	color: var(--match-blanco);
+	text-align: center;
+}
+
 /* ============ Panel: estructura ============ */
 .match-jb {
 	display: flex;
@@ -1065,7 +1157,8 @@
 	.match-jb__btn,
 	.match-jb__navitem,
 	.match-jb-drop,
-	.match-login-card__google {
+	.match-login-card__google,
+	.match-register-drop {
 		transition: none;
 	}
 

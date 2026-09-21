@@ -56,7 +56,7 @@ if ( is_user_logged_in() ) {
 				<?php esc_html_e( 'Cerrar sesión', 'match' ); ?>
 			</a>
 		<?php else : ?>
-			<a class="match-jb__btn match-jb__btn--dark" href="<?php echo esc_url( get_option( 'users_can_register' ) ? wp_registration_url() : home_url( '/#contacto' ) ); ?>">
+			<a class="match-jb__btn match-jb__btn--dark" href="<?php echo esc_url( match_registro_page_url() ?: home_url( '/#contacto' ) ); ?>">
 				<?php esc_html_e( 'Registrarse', 'match' ); ?>
 				<?php echo match_icon( 'user-circle' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</a>

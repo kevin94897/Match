@@ -47,6 +47,17 @@ function match_login_page_url(): string {
 }
 
 /**
+ * Registro en dos pasos (Figma: Registro 4341:3554, Subir CV 4462:3).
+ */
+function match_registro_page_url(): string {
+	return match_jobboard_page_url( 'template-registro.php' );
+}
+
+function match_registro_cv_page_url(): string {
+	return match_jobboard_page_url( 'template-registro-cv.php' );
+}
+
+/**
  * wp_login_url() → página de login del tema (con redirect_to).
  */
 function match_filter_login_url( string $login_url, string $redirect ): string {
@@ -151,6 +162,135 @@ function match_login_notice(): ?array {
 	// phpcs:enable
 	return null;
 }
+
+/**
+ * Aviso del paso 1 de registro según ?registro=error&msg=.
+ *
+ * @return array{type:string,text:string}|null
+ */
+function match_registro_notice(): ?array {
+	// phpcs:disable WordPress.Security.NonceVerification.Recommended
+	if ( 'error' !== ( $_GET['registro'] ?? '' ) ) {
+		return null;
+	}
+	$msg = isset( $_GET['msg'] ) ? sanitize_text_field( wp_unslash( $_GET['msg'] ) ) : '';
+	// phpcs:enable
+	return array( 'type' => 'error', 'text' => $msg ?: __( 'No pudimos crear tu cuenta. Inténtalo de nuevo.', 'match' ) );
+}
+
+/**
+ * Aviso del paso 2 de registro (subir CV) según ?paso2=error&msg=.
+ *
+ * @return array{type:string,text:string}|null
+ */
+function match_registro_cv_notice(): ?array {
+	// phpcs:disable WordPress.Security.NonceVerification.Recommended
+	if ( 'error' !== ( $_GET['paso2'] ?? '' ) ) {
+		return null;
+	}
+	$msg = isset( $_GET['msg'] ) ? sanitize_text_field( wp_unslash( $_GET['msg'] ) ) : '';
+	// phpcs:enable
+	return array( 'type' => 'error', 'text' => $msg ?: __( 'No pudimos subir tu CV. Inténtalo de nuevo.', 'match' ) );
+}
+
+/**
+ * Paso 1: crea la cuenta solo con el correo (sin pedir contraseña, como en
+ * Figma) y loguea automáticamente para que el paso 2 (subir CV) no pida
+ * iniciar sesión de nuevo. La contraseña es aleatoria y nunca se expone: el
+ * correo nativo de WordPress (wp_new_user_notification) manda el enlace
+ * para fijarla, igual que "Enviar link de reseteo" en Perfil.
+ */
+function match_handle_register(): void {
+	$back = match_registro_page_url() ?: home_url( '/' );
+
+	if ( ! isset( $_POST['_match_nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['_match_nonce'] ), 'match_register' ) || ! empty( $_POST['match_web'] ) ) {
+		wp_safe_redirect( add_query_arg( 'registro', 'error', $back ) );
+		exit;
+	}
+
+	$email = sanitize_email( wp_unslash( $_POST['email'] ?? '' ) );
+	if ( ! is_email( $email ) ) {
+		wp_safe_redirect( add_query_arg( array( 'registro' => 'error', 'msg' => rawurlencode( __( 'Escribe un correo válido.', 'match' ) ) ), $back ) );
+		exit;
+	}
+	if ( email_exists( $email ) ) {
+		wp_safe_redirect( add_query_arg( array( 'registro' => 'error', 'msg' => rawurlencode( __( 'Ese correo ya tiene una cuenta. Inicia sesión.', 'match' ) ) ), $back ) );
+		exit;
+	}
+
+	$username = sanitize_user( current( explode( '@', $email ) ), true ) ?: 'usuario';
+	$base     = $username;
+	$i        = 1;
+	while ( username_exists( $username ) ) {
+		$username = $base . ( ++$i );
+	}
+
+	$user_id = wp_insert_user(
+		array(
+			'user_login' => $username,
+			'user_email' => $email,
+			'user_pass'  => wp_generate_password( 24, true, true ),
+			'role'       => 'subscriber',
+		)
+	);
+
+	if ( is_wp_error( $user_id ) ) {
+		wp_safe_redirect( add_query_arg( array( 'registro' => 'error', 'msg' => rawurlencode( $user_id->get_error_message() ) ), $back ) );
+		exit;
+	}
+
+	wp_new_user_notification( $user_id, null, 'user' );
+
+	wp_set_current_user( $user_id );
+	wp_set_auth_cookie( $user_id, true );
+
+	wp_safe_redirect( match_registro_cv_page_url() ?: match_jobboard_url() );
+	exit;
+}
+add_action( 'admin_post_match_register', 'match_handle_register' );
+add_action( 'admin_post_nopriv_match_register', 'match_handle_register' );
+
+/**
+ * Paso 2: sube el CV con el mismo mecanismo que el perfil (MJB_CV::store(),
+ * mismos metas mjb_cv_*, ver match_profile_cv()), pero termina en el panel
+ * en vez de en Perfil. No hace falta borrar un CV anterior: la cuenta recién
+ * se creó en el paso 1.
+ */
+function match_handle_register_cv(): void {
+	$back = match_registro_cv_page_url() ?: match_jobboard_url();
+
+	if ( ! is_user_logged_in() ) {
+		wp_safe_redirect( wp_login_url( $back ) );
+		exit;
+	}
+	if ( ! isset( $_POST['_match_nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['_match_nonce'] ), 'match_register_cv' ) ) {
+		wp_safe_redirect( add_query_arg( 'paso2', 'error', $back ) );
+		exit;
+	}
+	if ( ! match_job_board_active() ) {
+		wp_safe_redirect( add_query_arg( array( 'paso2' => 'error', 'msg' => rawurlencode( __( 'El Job Board no está activo.', 'match' ) ) ), $back ) );
+		exit;
+	}
+	if ( empty( $_FILES['cv']['name'] ) ) {
+		wp_safe_redirect( add_query_arg( array( 'paso2' => 'error', 'msg' => rawurlencode( __( 'Elige un archivo.', 'match' ) ) ), $back ) );
+		exit;
+	}
+
+	$stored = MJB_CV::store( $_FILES['cv'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+	if ( is_wp_error( $stored ) ) {
+		wp_safe_redirect( add_query_arg( array( 'paso2' => 'error', 'msg' => rawurlencode( $stored->get_error_message() ) ), $back ) );
+		exit;
+	}
+
+	$user = wp_get_current_user();
+	update_user_meta( $user->ID, 'mjb_cv_file', $stored );
+	update_user_meta( $user->ID, 'mjb_cv_name', sanitize_file_name( wp_unslash( $_FILES['cv']['name'] ) ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+	update_user_meta( $user->ID, 'mjb_cv_date', current_time( 'mysql' ) );
+
+	wp_safe_redirect( match_jobboard_url() );
+	exit;
+}
+add_action( 'admin_post_match_register_cv', 'match_handle_register_cv' );
 
 /**
  * URL de "Continuar con Google". Vacía hasta que se conecte un proveedor
@@ -719,7 +859,7 @@ function match_user_applications( string $order = 'reciente' ): array {
  * Plantillas del Job Board (comparten header, CSS y clase de <body>).
  */
 function match_jobboard_templates(): array {
-	return array( 'template-jobboard.php', 'template-login.php', 'template-profile.php', 'template-procesos.php', 'template-guardados.php' );
+	return array( 'template-jobboard.php', 'template-login.php', 'template-registro.php', 'template-registro-cv.php', 'template-profile.php', 'template-procesos.php', 'template-guardados.php' );
 }
 
 /**

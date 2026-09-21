@@ -1,16 +1,21 @@
 <?php
 /**
- * Template Name: Job Board — Login
+ * Template Name: Job Board — Registro
  *
- * Inicio de sesión (Figma: Job-Board/Login — Glassy, node 4308:3581).
- * Envía a wp-login.php; inc/jobboard.php trae de vuelta los errores y
- * redirige al panel al entrar.
+ * Paso 1 del registro (Figma: Job-Board/Registro, node 4341:3554). Solo pide
+ * el correo: match_handle_register() (inc/jobboard.php) crea la cuenta con
+ * una contraseña aleatoria, manda el correo nativo de WordPress para
+ * fijarla y loguea automáticamente para pasar directo al paso 2.
  */
 defined( 'ABSPATH' ) || exit;
 
-$notice      = match_login_notice();
-$redirect_to = isset( $_GET['redirect_to'] ) ? esc_url_raw( wp_unslash( $_GET['redirect_to'] ) ) : match_jobboard_url(); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-$google_url  = match_google_login_url();
+if ( is_user_logged_in() ) {
+	wp_safe_redirect( match_jobboard_url() );
+	exit;
+}
+
+$notice     = match_registro_notice();
+$google_url = match_google_login_url();
 
 get_header( 'jobboard' );
 ?>
@@ -21,11 +26,11 @@ get_header( 'jobboard' );
 
 	<div class="match-login-page__inner">
 		<div class="match-login-page__intro" data-aos="fade-up">
-			<h1 class="match-login-page__title"><?php esc_html_e( 'Inicia sesión', 'match' ); ?></h1>
-			<p class="match-login-page__lead"><?php esc_html_e( 'Vacantes exclusivas en las empresas más reconocidas del país, gestionadas por Match.', 'match' ); ?></p>
+			<h1 class="match-login-page__title"><?php esc_html_e( 'Crea tu cuenta.', 'match' ); ?></h1>
+			<p class="match-login-page__lead"><?php esc_html_e( 'Crea tu cuenta y accede a vacantes exclusivas gestionadas por Match.', 'match' ); ?></p>
 		</div>
 
-		<form class="match-glass match-login-card" method="post" action="<?php echo esc_url( site_url( 'wp-login.php', 'login_post' ) ); ?>" data-aos="fade-up" data-aos-delay="120">
+		<form class="match-glass match-login-card" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" data-aos="fade-up" data-aos-delay="120">
 			<a class="match-login-card__logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
 				<?php echo match_logo(); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</a>
@@ -44,29 +49,22 @@ get_header( 'jobboard' );
 			<div class="match-login-card__fields">
 				<label class="match-field">
 					<span class="match-field__label"><?php esc_html_e( 'Correo electrónico', 'match' ); ?></span>
-					<input class="match-field__input" type="text" name="log" placeholder="tu@correo.com" required autocomplete="username" autocapitalize="off" spellcheck="false">
+					<input class="match-field__input" type="email" name="email" placeholder="tucorreo@ejemplo.com" required autocomplete="email">
 				</label>
-				<div class="match-login-card__password">
-					<label class="match-field">
-						<span class="match-field__label"><?php esc_html_e( 'Contraseña', 'match' ); ?></span>
-						<input class="match-field__input" type="password" name="pwd" placeholder="••••••••••••" required autocomplete="current-password">
-					</label>
-					<a class="match-login-card__forgot" href="<?php echo esc_url( wp_lostpassword_url( match_login_page_url() ) ); ?>"><?php esc_html_e( '¿Olvidaste tu contraseña?', 'match' ); ?></a>
-				</div>
 			</div>
 
-			<input type="hidden" name="redirect_to" value="<?php echo esc_url( $redirect_to ); ?>">
-			<input type="hidden" name="testcookie" value="1">
-			<input type="hidden" name="rememberme" value="forever">
+			<input type="hidden" name="action" value="match_register">
+			<?php wp_nonce_field( 'match_register', '_match_nonce' ); ?>
+			<input type="text" name="match_web" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
 
 			<div class="match-login-card__submit">
 				<button class="match-btn match-btn--primary match-btn--block" type="submit">
-					<?php esc_html_e( 'Ingresar', 'match' ); ?>
+					<?php esc_html_e( 'Continuar', 'match' ); ?>
 					<span class="match-btn__icon"><?php echo match_icon( 'arrow' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
 				</button>
 				<p class="match-login-card__register">
-					<?php esc_html_e( '¿No tienes cuenta?', 'match' ); ?>
-					<a href="<?php echo esc_url( match_registro_page_url() ?: home_url( '/#contacto' ) ); ?>"><?php esc_html_e( 'Regístrate ahora', 'match' ); ?></a>
+					<?php esc_html_e( '¿Ya tienes cuenta?', 'match' ); ?>
+					<a href="<?php echo esc_url( match_login_page_url() ?: home_url( '/' ) ); ?>"><?php esc_html_e( 'Inicia sesión', 'match' ); ?></a>
 				</p>
 			</div>
 		</form>
