@@ -1,33 +1,38 @@
 <?php
 /**
  * Hero de la portada (Figma: Hero, node 3502:3319).
+ * Textos y foto: match_home() (inc/home-data.php).
  */
 defined( 'ABSPATH' ) || exit;
 
+$home      = match_home();
 $open_jobs = match_open_jobs_count();
-$logos     = match_client_logos();
+$logos     = array_intersect_key( match_client_logos(), array_flip( $home['hero_logos'] ) );
 ?>
 <section class="match-hero">
 	<div class="match-hero__media">
-		<img src="<?php echo esc_url( get_theme_file_uri( 'assets/img/hero.webp' ) ); ?>" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
+		<img src="<?php echo esc_url( $home['hero_photo'] ); ?>" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
 	</div>
 
 	<div class="match-hero__inner">
 		<h1 class="match-hero__wordmark"><?php echo match_logo(); // phpcs:ignore WordPress.Security.EscapeOutput ?></h1>
 
 		<p class="match-hero__lead" data-aos="fade-up">
-			<?php esc_html_e( 'Sé parte de la base de datos ejecutiva', 'match' ); ?>
-			<strong><?php esc_html_e( 'más importante de la región', 'match' ); ?></strong>.
-			<?php esc_html_e( 'Las empresas líderes nos confían sus búsquedas.', 'match' ); ?>
+			<?php echo esc_html( $home['hero_lead'] ); ?>
+			<?php if ( $home['hero_lead_strong'] ) : ?>
+				<strong><?php echo esc_html( $home['hero_lead_strong'] ); ?></strong>.
+			<?php endif; ?>
+			<?php echo esc_html( $home['hero_lead_2'] ); ?>
 		</p>
 
 		<div class="match-glass match-hero__card" data-aos="fade-up" data-aos-delay="150">
 			<div class="match-hero__card-text">
-				<p class="match-hero__card-title"><?php esc_html_e( 'Da el primer paso', 'match' ); ?></p>
-				<p class="match-hero__card-sub"><?php esc_html_e( 'Accede a las posiciones más exclusivas del mercado ejecutivo', 'match' ); ?></p>
+				<p class="match-hero__card-title"><?php echo esc_html( $home['hero_card_title'] ); ?></p>
+				<p class="match-hero__card-sub"><?php echo esc_html( $home['hero_card_sub'] ); ?></p>
 			</div>
-			<a class="match-btn match-btn--primary match-btn--block match-btn--glow" href="<?php echo esc_url( match_jobs_url() ); ?>">
-				<?php esc_html_e( 'Encuentra tu próximo puesto', 'match' ); ?>
+			<a class="match-btn match-btn--primary" href="<?php echo esc_url( match_jobs_url() ); ?>">
+				<span class="match-btn__orbit" aria-hidden="true"></span>
+				<?php echo esc_html( $home['hero_card_cta'] ); ?>
 			</a>
 		</div>
 

@@ -60,7 +60,8 @@ get_header( 'jobboard' );
 			<input type="hidden" name="rememberme" value="forever">
 
 			<div class="match-login-card__submit">
-				<button class="match-btn match-btn--primary match-btn--block" type="submit">
+				<button class="match-btn match-btn--primary" type="submit">
+					<span class="match-btn__orbit" aria-hidden="true"></span>
 					<?php esc_html_e( 'Ingresar', 'match' ); ?>
 					<span class="match-btn__icon"><?php echo match_icon( 'arrow' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
 				</button>
@@ -75,8 +76,8 @@ get_header( 'jobboard' );
 	<footer class="match-login-page__legal">
 		<p><?php printf( esc_html__( '© %s Match. Todos los derechos reservados.', 'match' ), esc_html( wp_date( 'Y' ) ) ); ?></p>
 		<nav aria-label="<?php esc_attr_e( 'Legal', 'match' ); ?>">
-			<a href="<?php echo esc_url( home_url( '/terminos/' ) ); ?>"><?php esc_html_e( 'Términos y condiciones', 'match' ); ?></a>
-			<a href="<?php echo esc_url( get_privacy_policy_url() ?: home_url( '/privacidad/' ) ); ?>"><?php esc_html_e( 'Política de privacidad', 'match' ); ?></a>
+			<a href="<?php echo esc_url( home_url( '/terminos-de-servicio/' ) ); ?>"><?php esc_html_e( 'Términos y condiciones', 'match' ); ?></a>
+			<a href="<?php echo esc_url( home_url( '/politica-de-privacidad/' ) ); ?>"><?php esc_html_e( 'Política de privacidad', 'match' ); ?></a>
 			<a href="<?php echo esc_url( home_url( '/#contacto' ) ); ?>"><?php esc_html_e( 'Contacto', 'match' ); ?></a>
 		</nav>
 	</footer>

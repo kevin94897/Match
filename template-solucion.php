@@ -3,13 +3,14 @@
  * Template Name: Solución
  *
  * Interna de solución (Figma: Executive 3232:4955, Outplacement 3280:450).
- * El contenido sale de inc/soluciones-data.php según el slug de la página;
+ * El contenido sale de los campos PCF de la página (ver match_solucion() en
+ * inc/soluciones-data.php);
  * la clase match-sol--{tema} en <body> activa la paleta de cada solución
  * (ver "Temas" en assets/css/solucion.css).
  */
 defined( 'ABSPATH' ) || exit;
 
-$solucion = match_solucion_data( get_post_field( 'post_name' ) ) ?? match_solucion_data( 'executive' );
+$solucion = match_solucion( get_queried_object_id() );
 
 add_filter(
 	'body_class',

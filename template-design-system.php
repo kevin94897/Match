@@ -103,7 +103,7 @@ $icons  = array( 'user', 'chevron', 'arrow', 'phone', 'mail' );
 			<div class="match-glass" style="width: min(380px, 100%); text-align: center">
 				<p class="match-h4" style="margin: 0 0 var(--match-space-8); font-size: 21px">Da el primer paso</p>
 				<p style="margin: 0 0 var(--match-space-24); font-size: var(--match-fs-nav); color: rgba(255,255,255,.72)">Accede a las posiciones más exclusivas del mercado ejecutivo</p>
-				<a class="match-btn match-btn--primary match-btn--block match-btn--glow" href="#">Encuentra tu próximo puesto</a>
+				<a class="match-btn match-btn--primary" href="#"><span class="match-btn__orbit" aria-hidden="true"></span>Encuentra tu próximo puesto</a>
 			</div>
 		</div>
 		<div class="match-sg__row">

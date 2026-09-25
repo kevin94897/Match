@@ -158,7 +158,15 @@
 
 body.has-open-nav { overflow: hidden; }
 
-@media ( max-width: 1024px ) {
+/*
+ * El menú de escritorio (nav + enlaces + botón de sesión, todo en una sola
+ * línea sin wrap) necesita ~1217px de contenido más el padding: por debajo
+ * de ~1250px de viewport ya no entra y el navbar se desborda horizontalmente
+ * (scroll horizontal en toda la página). El toggle móvil entra antes, a los
+ * 1279px, con margen de sobra — mismo punto de corte que el acordeón de
+ * soluciones (ver home.css) para que ambos cambien de modo juntos.
+ */
+@media ( max-width: 1279px ) {
 	.match-navbar__inner { padding-inline: var(--match-space-24); }
 	.match-nav, .match-navbar__right { display: none; }
 	.match-navbar__toggle { display: block; }

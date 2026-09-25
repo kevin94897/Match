@@ -45,10 +45,7 @@
 }
 
 @media (max-width: 1024px) {
-	.match-section__head {
-		grid-template-columns: 1fr;
-		gap: var(--match-space-24);
-	}
+	
 }
 
 /* ============ Navbar en la portada ============
@@ -357,10 +354,12 @@
 
 	.match-hero__inner {
 		padding: 120px var(--match-space-24) var(--match-space-40);
+		align-items: center;
 	}
 
 	.match-hero__wordmark {
-		width: min(560px, 100%);
+		width: min(400px, 90%);
+		align-self: start;
 	}
 
 	.match-hero__card {
@@ -519,7 +518,7 @@
 	align-items: flex-end;
 	gap: var(--match-space-24);
 	padding: var(--match-space-32);
-	margin-left: 0px;
+	margin: 0px;
 	background: var(--match-blanco);
 	border: 0.5px solid var(--match-azul-100);
 	border-radius: var(--match-radius-16);
@@ -616,16 +615,49 @@
 	color: var(--match-azul-400);
 }
 
+/* Logos en marquee: nunca desbordan la tarjeta, sea cual sea su ancho */
 .match-logos {
+	position: relative;
 	flex: 1;
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: var(--match-space-16);
+	display: flex;
 	align-items: center;
-	justify-items: center;
-	padding: 28px;
-	margin: 0;
-	list-style: none;
+	min-height: 120px;
+	padding: 28px 0;
+	overflow: hidden;
+}
+
+/* Los logos se desvanecen contra el fondo blanco; el borde de la tarjeta queda intacto */
+.match-logos::before,
+.match-logos::after {
+	position: absolute;
+	inset-block: 0;
+	width: 56px;
+	z-index: 1;
+	pointer-events: none;
+	content: "";
+}
+
+.match-logos::before {
+	inset-inline-start: 0;
+	background: linear-gradient(90deg, var(--match-blanco), transparent);
+}
+
+.match-logos::after {
+	inset-inline-end: 0;
+	background: linear-gradient(270deg, var(--match-blanco), transparent);
+}
+
+.match-logos__track {
+	display: flex;
+	align-items: center;
+	gap: var(--match-space-48);
+	width: max-content;
+	padding-inline-end: var(--match-space-48);
+	animation: match-marquee 40s linear infinite;
+}
+
+.match-logos:hover .match-logos__track {
+	animation-play-state: paused;
 }
 
 .match-logos img {
@@ -636,23 +668,44 @@
 	object-fit: contain;
 }
 
-@media (max-width: 1280px) {
+/*
+ * Hasta 1600 px (el diseño de una fila necesita el contenedor de 1680): la
+ * foto y la intro van lado a lado y las tarjetas debajo a todo el ancho. Sin hover en pantallas táctiles, el CTA de la foto queda
+ * siempre visible.
+ */
+@media (max-width: 1600px) {
+	.match-testimonios .match-section__head {
+		margin-block-end: var(--match-space-64);
+	}
+
+	.match-section__head {
+		grid-template-columns: 1fr;
+		gap: var(--match-space-24);
+	}
+
 	.match-testimonios__grid {
-		flex-direction: column;
-		align-items: stretch;
-	}
-
-	.match-testimonios__photo {
-		flex: 0 0 auto;
-		height: 480px;
-	}
-
-	.match-testimonios__body {
-		width: 100%;
+		display: grid;
+		grid-template-columns: minmax(300px, 380px) 1fr;
+		align-items: center;
 		gap: var(--match-space-40);
 	}
 
+	.match-testimonios__photo {
+		flex: none;
+		height: 440px;
+	}
+
+	/* La intro y las tarjetas pasan a ser hijas de la grilla */
+	.match-testimonios__body {
+		display: contents;
+	}
+
+	.match-testimonios__intro {
+		width: min(450px, 100%);
+	}
+
 	.match-testimonios__cards {
+		grid-column: 1 / -1;
 		flex-wrap: wrap;
 	}
 
@@ -663,8 +716,54 @@
 	.match-testimonios__side {
 		flex: 1 1 320px;
 	}
+
+	.match-testimonios__photo::after,
+	.match-testimonios__cta {
+		opacity: 1;
+		translate: 0 0;
+	}
+
+	.match-testimonios__cta {
+		inset-inline-start: 32px;
+		inset-block-start: auto;
+		inset-block-end: 32px;
+		width: calc(100% - 64px);
+		gap: var(--match-space-24);
+	}
 }
 
+/* Tablet vertical (≤1024): la nota y los logos comparten fila */
+@media (max-width: 1024px) {
+	.match-testimonios__grid {
+		grid-template-columns: minmax(280px, 340px) 1fr;
+		gap: var(--match-space-32);
+	}
+
+	.match-testimonios__photo {
+		height: 400px;
+	}
+
+	.match-testimonial {
+		flex-basis: 100%;
+		min-height: 0;
+	}
+
+	.match-testimonios__side {
+		flex-direction: row;
+		flex-basis: 100%;
+	}
+
+	.match-testimonios__note {
+		flex: 0 0 40%;
+	}
+
+	.match-logos {
+		min-height: 0;
+		padding-block: var(--match-space-24);
+	}
+}
+
+/* Móvil (≤600): todo en una columna */
 @media (max-width: 600px) {
 	.match-testimonios {
 		padding-block: var(--match-space-80);
@@ -674,20 +773,69 @@
 		margin-block-end: var(--match-space-48);
 	}
 
+	.match-testimonios__grid {
+		grid-template-columns: minmax(0, 1fr);
+		gap: var(--match-space-24);
+	}
+
 	.match-testimonios__photo {
-		height: 380px;
+		height: auto;
+		aspect-ratio: 4 / 5;
+		max-height: 420px;
 	}
 
 	.match-testimonios__cta {
 		inset-inline-start: 24px;
-		inset-block-start: auto;
 		inset-block-end: 24px;
 		width: calc(100% - 48px);
 	}
 
+	.match-testimonios__cta .match-btn {
+		align-self: stretch;
+	}
+
+	.match-testimonios__cards {
+		margin-block-start: var(--match-space-16);
+	}
+
 	.match-testimonial {
 		padding: var(--match-space-24);
-		min-height: 0;
+		margin: 0;
+	}
+
+	.match-testimonial__author {
+		align-self: stretch;
+		align-items: flex-start;
+		text-align: start;
+	}
+
+	.match-testimonial__role {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--match-space-4);
+	}
+
+	.match-testimonial__role span+span::before {
+		content: none;
+	}
+
+	.match-testimonios__side {
+		flex-direction: column;
+	}
+
+	.match-testimonios__note {
+		flex: none;
+		padding: var(--match-space-24);
+	}
+
+	.match-logos__track {
+		gap: var(--match-space-32);
+		padding-inline-end: var(--match-space-32);
+	}
+
+	.match-logos img {
+		max-width: 80px;
+		max-height: 32px;
 	}
 }
 
@@ -1205,14 +1353,26 @@
 	height: 560px;
 }
 
+/*
+ * Los paneles cerrados ya no tienen flex-shrink:0 (ancho fijo de 284px pase
+ * lo que pase): con 4 paneles + 1680px de "ancho ideal" (780 abierto +
+ * 284×3), el acordeón solo cabía sin recortes desde ~1920px de viewport. De
+ * 1025px a 1680px el panel abierto se achicaba hasta ser un hilo de pocos
+ * píxeles, o su contenido (posicionado con insets fijos) quedaba recortado
+ * por el overflow:hidden del panel. Ahora todo se reparte y encoge con
+ * mínimos (min-width) que garantizan que el panel abierto siga siendo
+ * legible, y el ancho interno del contenido es proporcional (%) al ancho
+ * real del panel en vez de píxeles fijos — así nunca depende de un ancho
+ * "ideal" que puede no existir.
+ */
 .match-accordion__panel {
 	--accordion-ease: cubic-bezier(0.22, 1, 0.36, 1);
 	--accordion-time: 0.65s;
 	position: relative;
 	display: flex;
 	align-items: center;
-	flex: 0 0 284px;
-	min-width: 0;
+	flex: 0 1 284px;
+	min-width: 120px;
 	border-radius: var(--match-radius-24);
 	overflow: hidden;
 	background: var(--match-azul-900);
@@ -1222,6 +1382,7 @@
 
 .match-accordion__panel.is-open {
 	flex: 1 1 780px;
+	min-width: 540px;
 }
 
 /* La foto siempre es absoluta: al abrir, sus bordes (inset) y el radio se
@@ -1263,7 +1424,7 @@
 }
 
 .match-accordion__panel.is-open .match-accordion__visual {
-	inset: var(--match-space-24) calc(100% - 316px) var(--match-space-24) var(--match-space-16);
+	inset: var(--match-space-24) 60% var(--match-space-24) var(--match-space-16);
 	border-radius: var(--match-radius-16);
 }
 
@@ -1285,7 +1446,7 @@
 	padding: var(--match-space-24);
 	border: 0;
 	background: transparent;
-	color: var(--label, var(--match-blanco));
+	color: var(--match-blanco);
 	font: inherit;
 	font-size: var(--match-fs-nav);
 	font-weight: 600;
@@ -1312,14 +1473,13 @@
 .match-accordion__content {
 	position: absolute;
 	inset-block: 0;
-	inset-inline-start: 316px;
+	inset-inline: 42% 0;
 	z-index: 3;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	gap: var(--match-space-40);
-	width: 432px;
-	padding: var(--match-space-48) var(--match-space-40);
+	gap: var(--match-space-24);
+	padding: var(--match-space-32);
 	opacity: 0;
 	visibility: hidden;
 	translate: 32px 0;
@@ -1389,10 +1549,10 @@
 }
 
 .match-accordion__content .match-btn {
-	width: 285px;
+	width: min( 285px, 100% );
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1279px) {
 	.match-soluciones {
 		gap: var(--match-space-48);
 		padding-block: var(--match-space-56) var(--match-space-80);
@@ -1408,6 +1568,7 @@
 		flex: 0 0 auto;
 		flex-direction: column;
 		align-items: stretch;
+		min-width: 0;
 		transition: none;
 	}
 
@@ -1443,7 +1604,7 @@
 	}
 
 	.match-accordion__panel.is-open .match-accordion__content {
-		max-height: 640px;
+		max-height: 1200px;
 		padding: var(--match-space-32) var(--match-space-24);
 		transition: max-height 0.55s var(--accordion-ease), padding 0.55s var(--accordion-ease), opacity 0.45s ease 0.15s, visibility 0s;
 	}
@@ -1472,10 +1633,22 @@
 	.match-accordion__copy>*,
 	.match-accordion__content .match-btn,
 	.match-marquee__track,
+	.match-logos__track,
 	.match-testimonios__photo img,
 	.match-testimonios__cta {
 		transition: none;
 		animation: none;
+	}
+
+	/* Sin animación los logos se desplazan a mano */
+	.match-logos {
+		overflow-x: auto;
+		padding-inline: 28px;
+	}
+
+	.match-logos::before,
+	.match-logos::after {
+		content: none;
 	}
 
 	.match-accordion__visual img {

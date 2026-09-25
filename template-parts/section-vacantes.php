@@ -23,15 +23,7 @@ $filters = array(
 ?>
 <section class="match-vacantes-section" id="vacantes">
 	<div class="match-vacantes">
-		<?php
-		match_section_head(
-			__( 'Vacantes activas', 'match' ),
-			__( 'Vacantes.', 'match' ),
-			'',
-			'h2-xl',
-			true
-		);
-		?>
+		<?php match_section_head( match_home()['v_eyebrow'], match_home()['v_title'], '', 'h2-xl', true ); ?>
 
 		<div class="match-vacantes__body" data-aos="fade-up" data-aos-delay="100">
 			<div class="match-vacantes__toolbar">

@@ -61,8 +61,10 @@
 .match-footer__links a:hover { color: var(--match-primario-500); }
 
 /* --- Wordmark grande --- */
-.match-footer__wordmark { width: min( 869px, 100% ); margin: 0; color: var(--match-negro); }
-.match-footer__wordmark svg { display: block; width: 100%; height: auto; }
+.match-footer__wordmark { width: min( 569px, 100% ); margin: 0; color: var(--match-negro); }
+.match-footer__wordmark svg { display: block; width: 100%; height: auto; overflow: visible; }
+/* Las piezas se mueven desde app.js (parallax con el scroll) */
+.match-footer__wordmark path { will-change: translate, opacity; }
 
 /* --- Barra inferior --- */
 .match-footer__bar {

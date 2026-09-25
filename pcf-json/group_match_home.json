@@ -1,0 +1,1452 @@
+{
+    "key": "group_match_home",
+    "title": "Portada — Contenido",
+    "fields": [
+        {
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0,
+            "key": "field_home_tab_hero",
+            "label": "Hero",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "Sé parte de la base de datos ejecutiva",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_home_hero_lead",
+            "label": "Texto — inicio",
+            "name": "hero_lead",
+            "type": "text",
+            "instructions": "Obligatorio: mientras esté vacío, toda la portada usa los textos fijos del diseño.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "más importante de la región",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_home_hero_lead_strong",
+            "label": "Texto — parte destacada",
+            "name": "hero_lead_strong",
+            "type": "text",
+            "instructions": "Va en negrita.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "Las empresas líderes nos confían sus búsquedas.",
+            "maxlength": "",
+            "rows": 2,
+            "new_lines": "",
+            "key": "field_home_hero_lead_2",
+            "label": "Texto — continuación",
+            "name": "hero_lead_2",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "return_format": "url",
+            "library": "all",
+            "preview_size": "medium",
+            "min_width": "",
+            "min_height": "",
+            "max_width": "",
+            "max_height": "",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "",
+            "key": "field_home_hero_photo",
+            "label": "Foto de fondo",
+            "name": "hero_photo",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "40",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "Da el primer paso",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_home_hero_card_title",
+            "label": "Tarjeta — título",
+            "name": "hero_card_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "30",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "Encuentra tu próximo puesto",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_home_hero_card_cta",
+            "label": "Tarjeta — botón",
+            "name": "hero_card_cta",
+            "type": "text",
+            "instructions": "Enlaza al Job Board.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "30",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "Accede a las posiciones más exclusivas del mercado ejecutivo",
+            "maxlength": "",
+            "rows": 2,
+            "new_lines": "",
+            "key": "field_home_hero_card_sub",
+            "label": "Tarjeta — texto",
+            "name": "hero_card_sub",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "choices": {
+                "mmg": "MMG",
+                "ferreycorp": "Ferreycorp",
+                "elektra": "Elektra",
+                "beat": "Beat",
+                "credicorp": "Credicorp",
+                "olx": "OLX",
+                "abb": "ABB",
+                "intercorp": "Intercorp",
+                "alfa-laval": "Alfa Laval",
+                "aenza": "Aenza"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "layout": "horizontal",
+            "toggle": 0,
+            "allow_custom": 0,
+            "save_custom": 0,
+            "key": "field_home_hero_logos",
+            "label": "Logos de la cinta",
+            "name": "hero_logos",
+            "type": "checkbox",
+            "instructions": "Sin selección se muestran todos.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0,
+            "key": "field_home_tab_testimonios",
+            "label": "Empresas que confiaron",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "Bienvenido a Match",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_home_t_eyebrow",
+            "label": "Eyebrow",
+            "name": "t_eyebrow",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "30",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "Empresas que confiaron en Match,",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_home_t_title",
+            "label": "Titular — línea 1",
+            "name": "t_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "35",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "y encontraron al talento que buscaban",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_home_t_title_2",
+            "label": "Titular — línea 2",
+            "name": "t_title_2",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "35",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "return_format": "url",
+            "library": "all",
+            "preview_size": "medium",
+            "min_width": "",
+            "min_height": "",
+            "max_width": "",
+            "max_height": "",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "",
+            "key": "field_home_t_photo",
+            "label": "Foto del equipo",
+            "name": "t_photo",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "40",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "Contactemos",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_home_t_cta_strong",
+            "label": "CTA — destacado",
+            "name": "t_cta_strong",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "20",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "Conversemos sobre cómo podemos atender tus requerimientos",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_home_t_cta_text",
+            "label": "CTA — texto",
+            "name": "t_cta_text",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "40",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "Contactar ahora",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_home_t_cta_label",
+            "label": "CTA — botón",
+            "name": "t_cta_label",
+            "type": "text",
+            "instructions": "Enlaza a la sección Hablemos.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "30",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "No son solo palabras.",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_home_t_intro",
+            "label": "Intro — parte destacada",
+            "name": "t_intro",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "70",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "Lo dicen las empresas que nos confiaron sus búsquedas más difíciles.",
+            "maxlength": "",
+            "rows": 2,
+            "new_lines": "",
+            "key": "field_home_t_intro_2",
+            "label": "Intro — continuación",
+            "name": "t_intro_2",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "sub_fields": [
+                {
+                    "default_value": "",
+                    "placeholder": "“Tengo el mejor de los conceptos del servicio de Match”",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "key": "field_home_t_review_quote",
+                    "label": "Cita",
+                    "name": "quote",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 3,
+                    "new_lines": "",
+                    "key": "field_home_t_review_text",
+                    "label": "Texto",
+                    "name": "text",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "key": "field_home_t_review_name",
+                    "label": "Nombre",
+                    "name": "name",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "key": "field_home_t_review_role",
+                    "label": "Cargo",
+                    "name": "role",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "default_value": "",
+                    "placeholder": "Alfa Laval, Suecia",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "key": "field_home_t_review_company",
+                    "label": "Empresa, país",
+                    "name": "company",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "40",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "return_format": "url",
+                    "library": "all",
+                    "preview_size": "thumbnail",
+                    "min_width": "",
+                    "min_height": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "min_size": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "key": "field_home_t_review_avatar",
+                    "label": "Foto",
+                    "name": "avatar",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                }
+            ],
+            "layout": "block",
+            "key": "field_home_t_review",
+            "label": "Testimonio",
+            "name": "t_review",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "Nuestros profesionales hoy trabajan en",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_home_t_note_title",
+            "label": "Nota — título",
+            "name": "t_note_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "40",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "Compañías líderes que confiaron sus posiciones clave a Match.",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_home_t_note_text",
+            "label": "Nota — texto",
+            "name": "t_note_text",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "60",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "choices": {
+                "mmg": "MMG",
+                "ferreycorp": "Ferreycorp",
+                "elektra": "Elektra",
+                "beat": "Beat",
+                "credicorp": "Credicorp",
+                "olx": "OLX",
+                "abb": "ABB",
+                "intercorp": "Intercorp",
+                "alfa-laval": "Alfa Laval",
+                "aenza": "Aenza"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "layout": "horizontal",
+            "toggle": 0,
+            "allow_custom": 0,
+            "save_custom": 0,
+            "key": "field_home_t_logos",
+            "label": "Logos de la tarjeta",
+            "name": "t_logos",
+            "type": "checkbox",
+            "instructions": "Sin selección se muestran todos menos Aenza.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0,
+            "key": "field_home_tab_vacantes",
+            "label": "Vacantes",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "Vacantes activas",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_home_v_eyebrow",
+            "label": "Eyebrow",
+            "name": "v_eyebrow",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "Vacantes.",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_home_v_title",
+            "label": "Titular",
+            "name": "v_title",
+            "type": "text",
+            "instructions": "La lista y los filtros salen del Job Board.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0,
+            "key": "field_home_tab_soluciones",
+            "label": "Soluciones",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "Nuestras soluciones",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_home_s_eyebrow",
+            "label": "Eyebrow",
+            "name": "s_eyebrow",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "30",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "Conoce nuestras soluciones",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_home_s_title",
+            "label": "Titular — línea 1",
+            "name": "s_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "35",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "y encuentra la que necesitas",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_home_s_title_2",
+            "label": "Titular — línea 2",
+            "name": "s_title_2",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "35",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "sub_fields": [
+                {
+                    "post_type": [
+                        "page"
+                    ],
+                    "post_status": [],
+                    "taxonomy": [],
+                    "return_format": "id",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 1,
+                    "bidirectional": 0,
+                    "bidirectional_target": [],
+                    "key": "field_home_soluciones_page",
+                    "label": "Página de la solución",
+                    "name": "page",
+                    "type": "post_object",
+                    "instructions": "Destino de “Más información”; su slug también elige la foto del tema si no subes una.",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "40",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "default_value": "",
+                    "placeholder": "Headhunting",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "key": "field_home_soluciones_kicker",
+                    "label": "Kicker",
+                    "name": "kicker",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "key": "field_home_soluciones_title",
+                    "label": "Título",
+                    "name": "title",
+                    "type": "text",
+                    "instructions": "Vacío: el título de la página.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 3,
+                    "new_lines": "",
+                    "key": "field_home_soluciones_text",
+                    "label": "Descripción",
+                    "name": "text",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "return_format": "url",
+                    "library": "all",
+                    "preview_size": "thumbnail",
+                    "min_width": "",
+                    "min_height": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "min_size": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "key": "field_home_soluciones_photo",
+                    "label": "Foto",
+                    "name": "photo",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "40",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "default_value": "rgba(15,11,89,0.81)",
+                    "enable_opacity": 1,
+                    "return_format": "string",
+                    "key": "field_home_soluciones_overlay",
+                    "label": "Velo sobre la foto",
+                    "name": "overlay",
+                    "type": "color_picker",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "message": "Etiqueta en gris oscuro",
+                    "default_value": 0,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "key": "field_home_soluciones_light",
+                    "label": "Velo claro",
+                    "name": "light",
+                    "type": "true_false",
+                    "instructions": "Actívalo si el velo es claro.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    }
+                }
+            ],
+            "min": 0,
+            "max": 6,
+            "layout": "block",
+            "button_label": "Agregar solución",
+            "pagination": 0,
+            "rows_per_page": 20,
+            "key": "field_home_soluciones",
+            "label": "Paneles del acordeón",
+            "name": "soluciones",
+            "type": "repeater",
+            "instructions": "El primer panel arranca abierto. Sin filas se muestran las cuatro soluciones del diseño.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "field_home_soluciones_title"
+        },
+        {
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0,
+            "key": "field_home_tab_metricas",
+            "label": "Resultados",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "Resultados medibles",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_home_m_eyebrow",
+            "label": "Eyebrow",
+            "name": "m_eyebrow",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "30",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "La velocidad y precisión,",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_home_m_title",
+            "label": "Titular — línea 1",
+            "name": "m_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "35",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "medidas en números reales",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_home_m_title_2",
+            "label": "Titular — línea 2",
+            "name": "m_title_2",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "35",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "sub_fields": [
+                {
+                    "return_format": "url",
+                    "library": "all",
+                    "preview_size": "thumbnail",
+                    "min_width": "",
+                    "min_height": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "min_size": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "key": "field_home_m_hero_photo",
+                    "label": "Foto",
+                    "name": "photo",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "default_value": "",
+                    "placeholder": "Velocidad de contratación",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "key": "field_home_m_hero_title",
+                    "label": "Título",
+                    "name": "title",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "35",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "default_value": "",
+                    "placeholder": "Nuestro récord end-to-end.",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "key": "field_home_m_hero_sub",
+                    "label": "Subtítulo",
+                    "name": "sub",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "35",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "default_value": "",
+                    "placeholder": "1 DÍA",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "key": "field_home_m_hero_value",
+                    "label": "Cifra",
+                    "name": "value",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "default_value": "",
+                    "placeholder": "Récord de contratación, desde la vacante hasta la oferta aceptada.",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "key": "field_home_m_hero_text",
+                    "label": "Descripción",
+                    "name": "text",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "70",
+                        "class": "",
+                        "id": ""
+                    }
+                }
+            ],
+            "layout": "block",
+            "key": "field_home_m_hero",
+            "label": "Tarjeta grande",
+            "name": "m_hero",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "sub_fields": [
+                {
+                    "default_value": "",
+                    "placeholder": "Presentación de candidatos:",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "key": "field_home_m_split_label",
+                    "label": "Etiqueta",
+                    "name": "label",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "60",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "default_value": "",
+                    "placeholder": "1 hora récord",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "key": "field_home_m_split_value",
+                    "label": "Cifra",
+                    "name": "value",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "40",
+                        "class": "",
+                        "id": ""
+                    }
+                }
+            ],
+            "min": 0,
+            "max": 2,
+            "layout": "table",
+            "button_label": "Agregar dato",
+            "pagination": 0,
+            "rows_per_page": 20,
+            "key": "field_home_m_split",
+            "label": "Tarjeta doble",
+            "name": "m_split",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "sub_fields": [
+                {
+                    "default_value": "",
+                    "placeholder": "100%",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "key": "field_home_m_gauge_value",
+                    "label": "Cifra",
+                    "name": "value",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "20",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "default_value": "",
+                    "placeholder": "Primera terna",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "key": "field_home_m_gauge_title",
+                    "label": "Título",
+                    "name": "title",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "default_value": "",
+                    "placeholder": "De nuestros candidatos contratados están en nuestra primera terna.",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "key": "field_home_m_gauge_text",
+                    "label": "Descripción",
+                    "name": "text",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    }
+                }
+            ],
+            "layout": "block",
+            "key": "field_home_m_gauge",
+            "label": "Tarjeta con medidor",
+            "name": "m_gauge",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "sub_fields": [
+                {
+                    "default_value": "",
+                    "placeholder": "91%",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "key": "field_home_m_stats_value",
+                    "label": "Cifra",
+                    "name": "value",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "20",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "default_value": "",
+                    "placeholder": "HiPo o Top Performer",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "key": "field_home_m_stats_title",
+                    "label": "Título",
+                    "name": "title",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "key": "field_home_m_stats_text",
+                    "label": "Descripción",
+                    "name": "text",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    }
+                }
+            ],
+            "min": 0,
+            "max": 2,
+            "layout": "table",
+            "button_label": "Agregar tarjeta",
+            "pagination": 0,
+            "rows_per_page": 20,
+            "key": "field_home_m_stats",
+            "label": "Tarjetas con cifra grande",
+            "name": "m_stats",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0,
+            "key": "field_home_tab_contacto",
+            "label": "Hablemos",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "Cuéntanos qué necesitas",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_home_c_lead",
+            "label": "Texto de contacto",
+            "name": "c_lead",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "40",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "— ya sea headhunting, evaluación de talento u outplacement.",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_home_c_lead_muted",
+            "label": "Texto — continuación (gris)",
+            "name": "c_lead_muted",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "60",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "sub_fields": [
+                {
+                    "choices": {
+                        "lightning": "Rayo",
+                        "compass": "Brújula"
+                    },
+                    "default_value": "lightning",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "layout": "horizontal",
+                    "key": "field_home_c_bullets_icon",
+                    "label": "Icono",
+                    "name": "icon",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "20",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "default_value": "",
+                    "placeholder": "Respuesta rápida.",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "key": "field_home_c_bullets_head",
+                    "label": "Título",
+                    "name": "head",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "key": "field_home_c_bullets_text",
+                    "label": "Texto",
+                    "name": "text",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    }
+                }
+            ],
+            "min": 0,
+            "max": 2,
+            "layout": "table",
+            "button_label": "Agregar punto",
+            "pagination": 0,
+            "rows_per_page": 20,
+            "key": "field_home_c_bullets",
+            "label": "Puntos",
+            "name": "c_bullets",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_type",
+                "operator": "==",
+                "value": "front_page"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "field",
+    "hide_on_screen": [
+        "the_content",
+        "excerpt",
+        "discussion",
+        "comments",
+        "trackbacks"
+    ],
+    "active": true,
+    "description": "Contenido de la portada (front-page.php). Los names replican las claves de inc/home-data.php; los campos vacíos usan el texto fijo del diseño.",
+    "show_in_rest": true,
+    "modified": 1790022863
+}

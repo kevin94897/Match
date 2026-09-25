@@ -2,14 +2,15 @@
 /**
  * Contenido de las internas de solución.
  *
- * Por ahora es fijo (Figma: Executive 3232:4955, Outplacement 3280:450).
- * Cuando el cliente confirme los textos de Assessment y Personnel se
- * agregan aquí o se migran a campos del editor.
+ * Se edita en cada página con el grupo PCF "Solución — Contenido"
+ * (pcf-json/group_match_solucion.json), cuyos campos usan estas mismas claves.
+ * Los datos fijos de abajo (Figma: Executive 3232:4955, Outplacement 3280:450)
+ * son el respaldo para páginas cuyos campos aún están vacíos.
  *
  * Claves por solución:
  * - theme         Sufijo de la clase match-sol--{theme} en <body>; activa la
  *                 paleta en assets/css/solucion.css.
- * - logo          SVG del lockup "match + solución" del diferenciador.
+ * - logo          Ruta absoluta del SVG del lockup "match + solución".
  * - levels_title  Titular de la sección de perfiles/audiencias, en dos líneas.
  * - levels_icon   Icono opcional en la esquina de cada tarjeta de nivel.
  */
@@ -26,7 +27,7 @@ function match_solucion_data( string $slug ): ?array {
 		'executive' => array(
 			'title'   => 'Executive',
 			'theme'   => 'executive',
-			'logo'    => 'assets/img/executive/logo-executive.svg',
+			'logo'    => get_theme_file_path( 'assets/img/executive/logo-executive.svg' ),
 			'kicker'  => __( 'Headhunting', 'match' ),
 			'lead'    => __( 'No usamos avisos.', 'match' ),
 			'lead_2'  => __( 'Vamos directo a buscar al líder que ya está trabajando en tu competencia — mapeo directo, sin publicaciones ni intermediarios.', 'match' ),
@@ -99,7 +100,7 @@ function match_solucion_data( string $slug ): ?array {
 		'outplacement' => array(
 			'title'   => 'Outplacement',
 			'theme'   => 'outplacement',
-			'logo'    => 'assets/img/outplacement/logo-outplacement.svg',
+			'logo'    => get_theme_file_path( 'assets/img/outplacement/logo-outplacement.svg' ),
 			'kicker'  => __( 'Recolocación', 'match' ),
 			'lead'    => __( 'Acompañamos la salida,', 'match' ),
 			'lead_2'  => __( 'no solo la anunciamos. Rediseño de marca personal y entrenamiento en negociación para una recolocación rápida — individual (VIP) o corporativo (masivo).', 'match' ),
@@ -160,4 +161,79 @@ function match_solucion_data( string $slug ): ?array {
 	);
 
 	return $data[ $slug ] ?? null;
+}
+
+/**
+ * Datos de la solución de una página: los campos PCF si están llenos (el
+ * kicker es obligatorio, así que sirve de indicador); si no, los fijos de
+ * match_solucion_data() según el slug, con Executive como último respaldo.
+ * Devuelve la misma forma que match_solucion_data().
+ */
+function match_solucion( int $post_id ): array {
+	$slug     = (string) get_post_field( 'post_name', $post_id );
+	$fallback = match_solucion_data( $slug ) ?? match_solucion_data( 'executive' );
+
+	if ( ! function_exists( 'get_field' ) || ! get_field( 'kicker', $post_id ) ) {
+		return $fallback;
+	}
+
+	$f     = static fn( string $name, $default = '' ) => get_field( $name, $post_id ) ?: $default;
+	$pairs = static fn( array $rows, string $a, string $b ): array => array_map( static fn( $row ) => array( $row[ $a ] ?? '', $row[ $b ] ?? '' ), $rows );
+	$theme = $f( 'theme', 'executive' );
+
+	// El lockup SVG se inserta inline: primero el adjunto del campo, luego el
+	// del tema por slug o por paleta. WordPress no permite subir SVG sin un
+	// plugin que lo habilite, por eso el respaldo en el tema.
+	$logo = '';
+	foreach ( array( get_attached_file( (int) $f( 'logo', 0 ) ), get_theme_file_path( "assets/img/{$slug}/logo-{$slug}.svg" ), get_theme_file_path( "assets/img/{$theme}/logo-{$theme}.svg" ) ) as $path ) {
+		if ( $path && str_ends_with( $path, '.svg' ) && is_readable( $path ) ) {
+			$logo = $path;
+			break;
+		}
+	}
+
+	return array(
+		'title'          => get_the_title( $post_id ),
+		'theme'          => $theme,
+		'logo'           => $logo ?: $fallback['logo'],
+		'kicker'         => $f( 'kicker' ),
+		'lead'           => $f( 'lead' ),
+		'lead_2'         => $f( 'lead_2' ),
+		'trust'          => $f( 'trust', array() ),
+		'metrics'        => $pairs( $f( 'metrics', array() ), 'value', 'label' ),
+		'metrics_photo'  => $f( 'metrics_photo' ),
+		'cases'          => array_map(
+			static fn( $row ) => array(
+				'stats'   => $pairs( $row['stats'] ?: array(), 'value', 'label' ),
+				'quote'   => $row['quote'] ?? '',
+				'text'    => $row['text'] ?? '',
+				'role'    => $row['role'] ?? '',
+				'company' => $row['company'] ?? '',
+				'logo'    => $row['logo'] ?: '',
+			),
+			$f( 'cases', array() )
+		),
+		'levels'         => $pairs( $f( 'levels', array() ), 'label', 'photo' ),
+		'levels_title'   => $f( 'levels_title' ),
+		'levels_title_2' => $f( 'levels_title_2' ),
+		'levels_icon'    => $f( 'levels_icon' ),
+		'scope'          => $f( 'scope' ),
+		'scope_2'        => $f( 'scope_2' ),
+		'clients'        => $f( 'clients', array() ),
+		'years'          => $f( 'years' ),
+		'reviews'        => array_map(
+			static fn( $row ) => array(
+				'text'  => $row['text'] ?? '',
+				'name'  => $row['name'] ?? '',
+				'role'  => $row['role'] ?? '',
+				'photo' => $row['photo'] ?: '',
+				'bg'    => $row['bg'] ?: '#e0e0e0',
+				'fit'   => $row['fit'] ?: 'cover',
+			),
+			$f( 'reviews', array() )
+		),
+		'reviews_photo'  => $f( 'reviews_photo' ),
+		'contact_lead'   => $f( 'contact_lead' ),
+		'toast'          => $f( 'toast', $fallback['toast'] ),
+	);
 }

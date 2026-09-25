@@ -19,43 +19,112 @@
 	cursor: pointer;
 	overflow: hidden;
 	isolation: isolate;
-	transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+	transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, scale 0.3s ease;
 }
 
 .match-btn__icon { flex: 0 0 auto; width: 22px; height: 22px; }
 .match-btn__icon svg { display: block; width: 100%; height: 100%; }
 
+/*
+ * Componente único: azul primario sólido (--match-primario-500) con borde
+ * violeta, sin importar el fondo sobre el que caiga. Encima, un aro luminoso
+ * gira siempre: ::before es la barra blanca difusa y ::after es el relleno
+ * interior (inset 2px) que la tapa, así que la luz solo asoma por el borde.
+ */
 .match-btn--primary {
 	background: var(--match-primario-500);
 	border-color: rgba( 135, 129, 255, 0.4 );
 	color: var(--match-blanco);
 }
 
-/*
- * Los dos destellos celestes del botón primario (capas "Up" y "Down" en
- * Figma): viven fuera del área visible y entran al pasar el cursor.
- */
 .match-btn--primary::before,
 .match-btn--primary::after {
 	position: absolute;
-	inset-inline-start: 50%;
-	width: 139px;
-	height: 139px;
-	translate: -50% 0;
-	background: url( "../img/btn-glow.svg" ) center / contain no-repeat;
-	opacity: 0;
 	pointer-events: none;
-	z-index: -1;
 	content: "";
-	transition: opacity 0.25s ease, translate 0.25s ease;
 }
 
-.match-btn--primary::before { inset-block-start: -78px; }
-.match-btn--primary::after  { inset-block-end: -76px; }
+.match-btn--primary::before {
+	z-index: -2;
+	inset-inline-start: -50%;
+	inset-block-start: -50%;
+	width: 200%;
+	height: 200%;
+	background: linear-gradient( var(--match-blanco), var(--match-blanco) ) 100% 50% / 50% 30% no-repeat;
+	filter: blur( 6px );
+	animation: match-btn-rainbow 4s linear infinite;
+}
 
-.match-btn--primary:hover { background: var(--match-primario-800); }
-.match-btn--primary:hover::before { opacity: 1; translate: -50% 12px; }
-.match-btn--primary:hover::after  { opacity: 1; translate: -50% -12px; }
+.match-btn--primary::after {
+	z-index: -1;
+	inset: 2px;
+	border-radius: inherit;
+	background: var(--match-primario-500);
+}
+
+@media ( hover: hover ) {
+	.match-btn--primary:not(:disabled, [aria-disabled="true"]):hover {
+		scale: 1.05;
+		background: var(--match-primario-800);
+	}
+	.match-btn--primary:not(:disabled, [aria-disabled="true"]):hover::after { background: var(--match-primario-800); }
+	.match-btn--primary:not(:disabled, [aria-disabled="true"]):active { scale: 1; }
+}
+
+@keyframes match-btn-rainbow {
+	to { transform: rotate( 1turn ); }
+}
+
+/*
+ * Destello giratorio de los botones primarios grandes (Figma: Button-Primary,
+ * node 3068:4505 — cuatro fotogramas "Subir CV" que documentan los dos
+ * destellos dando la vuelta al botón sin parar). El aro de arriba ya cubre el
+ * botón estándar; en --block ese aro se apaga y el <span class="match-btn__orbit">
+ * lo reemplaza con dos destellos grandes clipeados por el overflow:hidden de
+ * .match-btn a la forma del botón, así que se ve como una luz recorriendo el
+ * borde por dentro. Un solo elemento gira; los dos destellos son sus
+ * ::before/::after, separados --orbit-radius del centro para quedar siempre
+ * uno frente al otro.
+ */
+.match-btn--primary.match-btn--block::before,
+.match-btn--primary.match-btn--block::after {
+	content: none;
+}
+
+.match-btn__orbit {
+	--orbit-size: 139px;
+	--orbit-radius: 72px;
+	--orbit-duration: 6s;
+
+	position: absolute;
+	inset-inline-start: 50%;
+	inset-block-start: 50%;
+	width: 0;
+	height: 0;
+	pointer-events: none;
+	z-index: -1;
+	animation: match-btn-orbit var(--orbit-duration) linear infinite;
+}
+
+.match-btn__orbit::before,
+.match-btn__orbit::after {
+	position: absolute;
+	inset-inline-start: 50%;
+	inset-block-start: 50%;
+	width: var(--orbit-size);
+	filter: blur(24px);
+	height: var(--orbit-size);
+	margin: calc( var(--orbit-size) / -2 ) 0 0 calc( var(--orbit-size) / -2 );
+	background: url( "../img/btn-glow.svg" ) center / contain no-repeat;
+	content: "";
+}
+
+.match-btn__orbit::before { translate: 0 calc( var(--orbit-radius) * -1 ); }
+.match-btn__orbit::after  { translate: 0 var(--orbit-radius); }
+
+@keyframes match-btn-orbit {
+	to { rotate: 360deg; }
+}
 
 .match-btn--secondary {
 	background: var(--match-neutral-200);
@@ -136,7 +205,8 @@
 }
 
 @media ( prefers-reduced-motion: reduce ) {
-	.match-btn, .match-btn--primary::before, .match-btn--primary::after { transition: none; }
+	.match-btn, .match-btn--primary::before { transition: none; }
+	.match-btn__orbit, .match-btn--primary::before { animation: none; }
 }
 
 
@@ -286,3 +356,73 @@
 .match-page__media { margin: 0 0 var(--match-space-32); border-radius: var(--match-radius-16); overflow: hidden; }
 .match-page__content { max-width: 68ch; }
 .match-page__pages { margin-block-start: var(--match-space-32); display: flex; gap: var(--match-space-8); }
+
+.match-page__updated { margin: var(--match-space-8) 0 0; font-size: var(--match-fs-body-sm); color: var(--match-azul-400); }
+.match-page__intro { color: var(--match-neutral-500); }
+
+/* Escala de titulares dentro del contenido del editor (páginas y legal) */
+.match-job__prose h2 {
+	margin: var(--match-space-40) 0 var(--match-space-16);
+	font-size: var(--match-fs-h4);
+	font-weight: 600;
+	line-height: var(--match-lh-h4);
+	color: var(--match-primario-500);
+}
+
+.match-job__prose h2:first-child { margin-block-start: 0; }
+.match-job__prose a { color: var(--match-primario-500); }
+
+/*
+ * Índice de las páginas legales: columna angosta a la izquierda, sticky bajo
+ * el navbar, con scroll-spy en app.js (resalta el enlace de la sección que
+ * está a la vista). Con una sola sección, la plantilla no la imprime.
+ */
+.match-legal__layout {
+	display: grid;
+	grid-template-columns: minmax( 280px, 380px ) minmax( 0, 1fr );
+	gap: var(--match-space-48);
+	align-items: start;
+}
+
+.match-legal__toc { position: sticky; inset-block-start: calc( var(--match-navbar-h) + var(--match-space-24) ); }
+.match-legal__toc-card { margin-block-end: 0; }
+
+.match-legal__toc-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	max-height: calc( 100vh - var(--match-navbar-h) - 140px );
+	overflow-y: auto;
+}
+
+.match-legal__toc-list a {
+	display: block;
+	padding: var(--match-space-8) var(--match-space-12);
+	border-radius: var(--match-radius-8);
+	border-inline-start: 2px solid transparent;
+	font-size: var(--match-fs-body-sm);
+	line-height: var(--match-lh-body);
+	color: var(--match-azul-400);
+	text-decoration: none;
+	transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.match-legal__toc-list a:hover { color: var(--match-primario-500); }
+
+.match-legal__toc-list a.is-active {
+	border-inline-start-color: var(--match-primario-500);
+	background: var(--match-azul-50);
+	color: var(--match-primario-500);
+	font-weight: 600;
+}
+
+.match-legal__body h2 { scroll-margin-block-start: calc( var(--match-navbar-h) + var(--match-space-24) ); }
+
+@media ( max-width: 900px ) {
+	.match-legal__layout { grid-template-columns: 1fr; }
+	.match-legal__toc { position: static; }
+	.match-legal__toc-list { max-height: none; overflow-y: visible; }
+}

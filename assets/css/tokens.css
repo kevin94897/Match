@@ -19,6 +19,11 @@
 	--match-celeste-700: #02589d; /* titulares de Outplacement */
 	--match-celeste-800: #034477; /* fondo del diferenciador de Outplacement */
 
+	/* --- Morado: la paleta de Personnel --- */
+	--match-morado-500: #7723d8; /* iconos */
+	--match-morado-600: #621db1; /* titular del hero y acentos */
+	--match-morado-700: #4c168a; /* fondo del diferenciador y titular de perfiles */
+
 	/* --- Azul neutral: la escala que estructura la UI --- */
 	--match-azul-50:  #f6f6f6;
 	--match-azul-100: #e3e3e8;
@@ -94,7 +99,7 @@
 	--match-fs-h2-xl:  110px;
 
 	--match-lh-tight:   1.1;
-	--match-lh-head:    1.2;
+	--match-lh-head:    1.05;
 	--match-lh-h4:      1.4;
 	--match-lh-eyebrow: 1.5;
 	--match-lh-body:    1.6;

@@ -17,7 +17,8 @@ defined( 'ABSPATH' ) || exit;
 			<?php echo match_icon( 'close-circle' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 		</button>
 	</div>
-	<a class="match-btn match-btn--primary match-btn--block" href="#contacto">
+	<a class="match-btn match-btn--primary" href="#contacto">
+		<span class="match-btn__orbit" aria-hidden="true"></span>
 		<?php esc_html_e( 'Agendar consultoría', 'match' ); ?>
 		<span class="match-btn__icon"><?php echo match_icon( 'arrow' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
 	</a>

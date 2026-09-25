@@ -36,6 +36,15 @@
 	src: url("../fonts/poppins-bold.woff2") format("woff2");
 }
 
+/* Regular: citas destacadas del blog */
+@font-face {
+	font-family: "Open Sauce Sans";
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url("../fonts/open-sauce-sans-regular.woff2") format("woff2");
+}
+
 @font-face {
 	font-family: "Open Sauce Sans";
 	font-style: normal;

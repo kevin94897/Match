@@ -21,7 +21,10 @@
 		/* Anclas a mano en vez de la opción `anchors` de Lenis: esa mide con
 		 * getBoundingClientRect, que incluye el translateY(100px) que AOS pone a
 		 * las secciones aún no animadas, y el destino queda 100 px pasado.
-		 * offsetTop ignora los transforms. */
+		 * offsetTop ignora los transforms. El destino puede pedir más aire por
+		 * arriba (el navbar es sticky) con scroll-margin-top en CSS, como
+		 * .match-legal__body h2; sin eso se usan los 16 px de siempre.
+		 */
 		document.addEventListener( 'click', function ( event ) {
 			var link = event.target.closest( 'a[href*="#"]' );
 			if ( ! link || link.origin !== window.location.origin || link.pathname !== window.location.pathname ) { return; }
@@ -30,7 +33,8 @@
 			event.preventDefault();
 			var y = 0;
 			for ( var el = target; el; el = el.offsetParent ) { y += el.offsetTop; }
-			lenis.scrollTo( Math.max( 0, y - 16 ) );
+			var margin = parseFloat( getComputedStyle( target ).scrollMarginTop ) || 16;
+			lenis.scrollTo( Math.max( 0, y - margin ) );
 			if ( window.history.pushState ) { window.history.pushState( null, '', link.hash ); }
 		} );
 	}
@@ -578,6 +582,49 @@
 		}
 	}
 
+	/* --- Wordmark del pie en parallax (Figma: Wordmark - match, node 3502:3533) ---
+	 * Cada pieza (isotipo, luego m-a-t-c-h) sube y aparece escalonada según
+	 * cuánto del pie entró en pantalla, con la curva del diseño
+	 * (cubic-bezier .16,1,.3,1 ≈ expo-out). Va ligada al scroll, así que se
+	 * deshace al volver arriba. El SVG trae el isotipo al final: se reordena.
+	 */
+	var wordmark = document.querySelector( '.match-footer__wordmark svg' );
+
+	if ( wordmark && ! reducedMotion ) {
+		var pieces = Array.prototype.slice.call( wordmark.querySelectorAll( 'path' ) );
+		pieces.unshift( pieces.pop() );
+
+		var viewBox = wordmark.viewBox.baseVal;
+		var travel  = ( viewBox && viewBox.height ? viewBox.height : 24 ) * ( 20 / 128 ); // 20 px sobre 128 px del diseño, en unidades del SVG
+		var ease    = function ( t ) { return t >= 1 ? 1 : 1 - Math.pow( 2, -10 * t ); };
+		var ticking = false;
+
+		var paint = function () {
+			ticking = false;
+			var rect = wordmark.getBoundingClientRect();
+			var vh   = window.innerHeight;
+			// 0 cuando el borde superior toca el fondo de la ventana; 1 cuando el logo entero está a un 15 % del fondo.
+			var progress = ( vh - rect.top ) / ( rect.height + vh * 0.15 );
+
+			pieces.forEach( function ( piece, i ) {
+				var t = ease( Math.min( 1, Math.max( 0, ( progress - i * 0.08 ) / 0.5 ) ) );
+				piece.style.translate = '0 ' + ( ( 1 - t ) * travel ).toFixed( 3 ) + 'px';
+				piece.style.opacity   = t.toFixed( 3 );
+			} );
+		};
+
+		var onScroll = function () {
+			if ( ! ticking ) {
+				ticking = true;
+				window.requestAnimationFrame( paint );
+			}
+		};
+
+		paint();
+		window.addEventListener( 'scroll', onScroll, { passive: true } );
+		window.addEventListener( 'resize', onScroll );
+	}
+
 	/* --- Barra "pegada" al hacer scroll ---
 	 * .is-stuck se activa cuando el centinela (48 px: franja clara + esquinas
 	 * de la pestaña de la portada) sale del viewport, para que la transición
@@ -593,5 +640,37 @@
 		new IntersectionObserver( function ( entries ) {
 			navbar.classList.toggle( 'is-stuck', ! entries[ 0 ].isIntersecting );
 		} ).observe( sentinel );
+	}
+
+	/* --- Índice de las páginas legales (scroll-spy) ---
+	 * Resalta en el índice el h2 que está bajo la franja superior del
+	 * viewport; los enlaces son anclas normales, el clic ya lo maneja el
+	 * gestor de arriba (scroll suave con Lenis si está disponible).
+	 */
+	var legalToc = document.querySelector( '[data-legal-toc]' );
+
+	if ( legalToc && 'IntersectionObserver' in window ) {
+		var legalLinks = Array.prototype.slice.call( legalToc.querySelectorAll( '[data-legal-toc-link]' ) );
+		var legalSections = legalLinks
+			.map( function ( link ) { return document.getElementById( link.hash.slice( 1 ) ); } )
+			.filter( Boolean );
+
+		var setActiveLegalLink = function ( id ) {
+			legalLinks.forEach( function ( link ) {
+				link.classList.toggle( 'is-active', link.hash.slice( 1 ) === id );
+			} );
+		};
+
+		var legalObserver = new IntersectionObserver(
+			function ( entries ) {
+				entries.forEach( function ( entry ) {
+					if ( entry.isIntersecting ) { setActiveLegalLink( entry.target.id ); }
+				} );
+			},
+			{ rootMargin: '-96px 0px -70% 0px', threshold: 0 }
+		);
+
+		legalSections.forEach( function ( section ) { legalObserver.observe( section ); } );
+		setActiveLegalLink( legalSections.length ? legalSections[ 0 ].id : '' );
 	}
 }() );

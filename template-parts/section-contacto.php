@@ -10,9 +10,10 @@ defined( 'ABSPATH' ) || exit;
 $status  = isset( $_GET['contacto'] ) ? sanitize_key( wp_unslash( $_GET['contacto'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 $profile = isset( $_GET['perfil'] ) && 'profesional' === $_GET['perfil'] ? 'profesional' : 'empresa'; // phpcs:ignore WordPress.Security.NonceVerification
 
-// Las internas pasan su propio texto de apoyo.
-$lead       = $args['lead'] ?? __( 'Cuéntanos qué necesitas', 'match' );
-$lead_muted = array_key_exists( 'lead_muted', (array) $args ) ? $args['lead_muted'] : __( '— ya sea headhunting, evaluación de talento u outplacement.', 'match' );
+// Las internas pasan su propio texto de apoyo; la portada usa sus campos PCF.
+$home       = match_home();
+$lead       = $args['lead'] ?? $home['c_lead'];
+$lead_muted = array_key_exists( 'lead_muted', (array) $args ) ? $args['lead_muted'] : $home['c_lead_muted'];
 ?>
 <section class="match-contacto" id="contacto" data-aos="fade-up">
 	<div class="match-contacto__inner">
@@ -61,7 +62,8 @@ $lead_muted = array_key_exists( 'lead_muted', (array) $args ) ? $args['lead_mute
 				<?php elseif ( 'error' === $status ) : ?>
 					<p class="match-contacto__notice match-contacto__notice--error" role="alert"><?php esc_html_e( 'No pudimos enviar tu mensaje. Revisa los datos e inténtalo de nuevo.', 'match' ); ?></p>
 				<?php endif; ?>
-				<button class="match-btn match-btn--primary match-btn--block" type="submit">
+				<button class="match-btn match-btn--primary" type="submit">
+					<span class="match-btn__orbit" aria-hidden="true"></span>
 					<?php esc_html_e( 'Enviar mensaje', 'match' ); ?>
 					<span class="match-btn__icon"><?php echo match_icon( 'arrow' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
 				</button>
@@ -79,14 +81,12 @@ $lead_muted = array_key_exists( 'lead_muted', (array) $args ) ? $args['lead_mute
 			</p>
 			<hr class="match-contacto__rule">
 			<div class="match-contacto__bullets">
-				<div class="match-bullet">
-					<p class="match-bullet__head"><?php echo match_icon( 'lightning' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php esc_html_e( 'Respuesta rápida.', 'match' ); ?></p>
-					<p class="match-bullet__text"><?php esc_html_e( 'Si estás listo para encontrar al candidato ideal, nos encantaría conversar.', 'match' ); ?></p>
-				</div>
-				<div class="match-bullet">
-					<p class="match-bullet__head"><?php echo match_icon( 'compass' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php esc_html_e( 'Próximos pasos claros.', 'match' ); ?></p>
-					<p class="match-bullet__text"><?php esc_html_e( 'Después de la consulta, te daremos un plan detallado y un cronograma.', 'match' ); ?></p>
-				</div>
+				<?php foreach ( $home['c_bullets'] as $bullet ) : ?>
+					<div class="match-bullet">
+						<p class="match-bullet__head"><?php echo match_icon( $bullet['icon'] ); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php echo esc_html( $bullet['head'] ); ?></p>
+						<p class="match-bullet__text"><?php echo esc_html( $bullet['text'] ); ?></p>
+					</div>
+				<?php endforeach; ?>
 			</div>
 		</div>
 	</div>

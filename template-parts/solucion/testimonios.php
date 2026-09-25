@@ -1,8 +1,9 @@
 <?php
 /**
  * Testimonios (Figma: node 3847:1814).
- * Carrusel con Embla: en escritorio (≥1441 px) las tres tarjetas caben y no
- * hay desplazamiento; por debajo se deslizan de a una.
+ * Carrusel con Embla: siempre desliza, con 1 tarjeta visible en móvil (<601px)
+ * y 2 desde tablet en adelante (≥601px, sin tope superior), para que nunca
+ * quede una fila estática con las tres a la vez.
  *
  * @var array $args
  */
@@ -15,7 +16,7 @@ defined( 'ABSPATH' ) || exit;
 		<div class="overflow-hidden" data-embla-viewport>
 			<div class="flex touch-pan-y gap-4">
 				<?php foreach ( $args['reviews'] as $review ) : ?>
-					<blockquote class="match-review min-w-0 shrink-0 grow-0 basis-full sm:basis-[calc(50%-8px)] lg:basis-[calc((100%-692px)/2)]">
+					<blockquote class="match-review min-w-0 shrink-0 grow-0 basis-full sm:basis-[calc(50%-8px)]">
 						<div class="match-review__photo<?php echo 'contain' === $review['fit'] ? ' match-review__photo--contain' : ''; ?>" style="--bg: <?php echo esc_attr( $review['bg'] ); ?>">
 							<img src="<?php echo esc_url( $review['photo'] ); ?>" alt="" loading="lazy" decoding="async">
 						</div>
@@ -30,7 +31,7 @@ defined( 'ABSPATH' ) || exit;
 					</blockquote>
 				<?php endforeach; ?>
 
-				<div class="match-review match-review--dark min-w-0 shrink-0 grow-0 basis-full sm:basis-[calc(50%-8px)] lg:basis-[660px]">
+				<div class="match-review match-review--dark min-w-0 shrink-0 grow-0 basis-full sm:basis-[calc(50%-8px)]">
 					<img src="<?php echo esc_url( $args['reviews_photo'] ); ?>" alt="" loading="lazy" decoding="async">
 					<p class="match-review__headline"><?php esc_html_e( '¿Qué dicen nuestros clientes?', 'match' ); ?></p>
 				</div>

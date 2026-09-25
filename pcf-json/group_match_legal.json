@@ -1,0 +1,130 @@
+{
+    "key": "group_match_legal",
+    "title": "Legal — Contenido",
+    "fields": [
+        {
+            "default_value": "",
+            "placeholder": "Setiembre de 2026",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_legal_updated_at",
+            "label": "Última actualización",
+            "name": "updated_at",
+            "type": "text",
+            "instructions": "Texto libre, se muestra debajo del título.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "30",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 3,
+            "new_lines": "",
+            "key": "field_legal_intro",
+            "label": "Introducción",
+            "name": "intro",
+            "type": "textarea",
+            "instructions": "Párrafo opcional antes de las secciones.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "sub_fields": [
+                {
+                    "default_value": "",
+                    "placeholder": "1. Aceptación de los términos",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "key": "field_legal_sections_heading",
+                    "label": "Título",
+                    "name": "heading",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "default_value": "",
+                    "tabs": "visual",
+                    "toolbar": "basic",
+                    "media_upload": 0,
+                    "delay": 0,
+                    "key": "field_legal_sections_body",
+                    "label": "Contenido",
+                    "name": "body",
+                    "type": "wysiwyg",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                }
+            ],
+            "min": 0,
+            "max": 0,
+            "layout": "block",
+            "button_label": "Agregar sección",
+            "pagination": 0,
+            "rows_per_page": 20,
+            "key": "field_legal_sections",
+            "label": "Secciones",
+            "name": "sections",
+            "type": "repeater",
+            "instructions": "Con al menos una sección, este contenido reemplaza al texto fijo del tema.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "field_legal_sections_heading"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "template-legal.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "field",
+    "hide_on_screen": [
+        "the_content",
+        "excerpt",
+        "discussion",
+        "comments",
+        "trackbacks"
+    ],
+    "active": true,
+    "description": "Contenido de Términos de Servicio y Política de Privacidad (inc/legal-data.php). Con el repeater \"sections\" vacío, la página usa el texto fijo según su slug.",
+    "show_in_rest": true,
+    "modified": 1790030654
+}

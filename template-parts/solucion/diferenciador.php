@@ -17,7 +17,7 @@ $cases = $args['cases'];
 					<article class="match-sol-dif__slide min-w-0 shrink-0 grow-0 basis-full">
 						<div class="match-sol-dif__left">
 							<div class="match-sol-dif__logo" aria-label="<?php echo esc_attr( 'Match ' . $args['title'] ); ?>" role="img">
-								<?php echo file_get_contents( get_theme_file_path( $args['logo'] ) ); // phpcs:ignore ?>
+								<?php echo is_readable( $args['logo'] ) ? file_get_contents( $args['logo'] ) : ''; // phpcs:ignore ?>
 							</div>
 							<?php if ( $case['stats'] ) : ?>
 								<dl class="match-sol-dif__stats">

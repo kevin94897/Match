@@ -59,6 +59,10 @@ function match_assets(): void {
 		wp_enqueue_style( 'match-solucion', get_theme_file_uri( 'assets/css/solucion.css' ), array( 'match-footer' ), MATCH_VERSION );
 	}
 
+	if ( is_page_template( 'template-blog.php' ) || is_singular( 'post' ) ) {
+		wp_enqueue_style( 'match-blog', get_theme_file_uri( 'assets/css/blog.css' ), array( 'match-footer' ), MATCH_VERSION );
+	}
+
 	if ( is_page_template( 'template-design-system.php' ) ) {
 		wp_enqueue_style( 'match-styleguide', get_theme_file_uri( 'assets/css/styleguide.css' ), array( 'match-footer' ), MATCH_VERSION );
 	}
@@ -260,3 +264,6 @@ require_once get_theme_file_path( 'inc/template-tags.php' );
 require_once get_theme_file_path( 'inc/jobs-filters.php' );
 require_once get_theme_file_path( 'inc/jobboard.php' );
 require_once get_theme_file_path( 'inc/soluciones-data.php' );
+require_once get_theme_file_path( 'inc/home-data.php' );
+require_once get_theme_file_path( 'inc/legal-data.php' );
+require_once get_theme_file_path( 'inc/blog.php' );

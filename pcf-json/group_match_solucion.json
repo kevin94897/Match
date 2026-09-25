@@ -1,0 +1,994 @@
+{
+    "key": "group_match_solucion",
+    "title": "Solución — Contenido",
+    "fields": [
+        {
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0,
+            "key": "field_sol_tab_general",
+            "label": "General",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "choices": {
+                "executive": "Executive (azul)",
+                "outplacement": "Outplacement (celeste)",
+                "personnel": "Personnel (morado)",
+                "assessment": "Assessment (grafito)"
+            },
+            "default_value": "executive",
+            "return_format": "value",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "key": "field_sol_theme",
+            "label": "Paleta",
+            "name": "theme",
+            "type": "select",
+            "instructions": "Colores de la página (clase match-sol--{paleta}). Una paleta nueva requiere agregarla en assets/css/solucion.css.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "return_format": "id",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "svg",
+            "preview_size": "thumbnail",
+            "min_width": "",
+            "min_height": "",
+            "max_width": "",
+            "max_height": "",
+            "key": "field_sol_logo",
+            "label": "Lockup “match + solución”",
+            "name": "logo",
+            "type": "file",
+            "instructions": "SVG del logo que aparece en los casos de éxito. Se inserta inline, por eso debe ser .svg.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0,
+            "key": "field_sol_tab_hero",
+            "label": "Hero",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_sol_kicker",
+            "label": "Kicker",
+            "name": "kicker",
+            "type": "text",
+            "instructions": "Etiqueta sobre el texto (ej. Headhunting). El título grande es el título de la página.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "40",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_sol_lead",
+            "label": "Texto — parte destacada",
+            "name": "lead",
+            "type": "text",
+            "instructions": "Va en negrita.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "60",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 3,
+            "new_lines": "",
+            "key": "field_sol_lead_2",
+            "label": "Texto — continuación",
+            "name": "lead_2",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "choices": {
+                "mmg": "MMG",
+                "ferreycorp": "Ferreycorp",
+                "elektra": "Elektra",
+                "beat": "Beat",
+                "credicorp": "Credicorp",
+                "olx": "OLX",
+                "abb": "ABB",
+                "intercorp": "Intercorp",
+                "alfa-laval": "Alfa Laval",
+                "aenza": "Aenza"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "layout": "horizontal",
+            "toggle": 0,
+            "allow_custom": 0,
+            "save_custom": 0,
+            "key": "field_sol_trust",
+            "label": "Logos “Respaldado por”",
+            "name": "trust",
+            "type": "checkbox",
+            "instructions": "Chips de logos bajo el hero (se recomiendan 5).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0,
+            "key": "field_sol_tab_metricas",
+            "label": "Métricas",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "return_format": "url",
+            "library": "all",
+            "preview_size": "medium",
+            "min_width": "",
+            "min_height": "",
+            "max_width": "",
+            "max_height": "",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "",
+            "key": "field_sol_metrics_photo",
+            "label": "Foto de fondo",
+            "name": "metrics_photo",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "sub_fields": [
+                {
+                    "default_value": "",
+                    "placeholder": "91%",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "key": "field_sol_metrics_value",
+                    "label": "Cifra",
+                    "name": "value",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "key": "field_sol_metrics_label",
+                    "label": "Descripción",
+                    "name": "label",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "70",
+                        "class": "",
+                        "id": ""
+                    }
+                }
+            ],
+            "min": 1,
+            "max": 4,
+            "layout": "table",
+            "button_label": "Agregar métrica",
+            "pagination": 0,
+            "rows_per_page": 20,
+            "key": "field_sol_metrics",
+            "label": "Métricas",
+            "name": "metrics",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0,
+            "key": "field_sol_tab_casos",
+            "label": "Casos de éxito",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "sub_fields": [
+                {
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 3,
+                    "new_lines": "",
+                    "key": "field_sol_cases_quote",
+                    "label": "Cita",
+                    "name": "quote",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 3,
+                    "new_lines": "",
+                    "key": "field_sol_cases_text",
+                    "label": "Contexto",
+                    "name": "text",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "key": "field_sol_cases_role",
+                    "label": "Cargo",
+                    "name": "role",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "key": "field_sol_cases_company",
+                    "label": "Empresa · sector",
+                    "name": "company",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "return_format": "url",
+                    "library": "all",
+                    "preview_size": "thumbnail",
+                    "min_width": "",
+                    "min_height": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "min_size": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "key": "field_sol_cases_logo",
+                    "label": "Logo del cliente (blanco)",
+                    "name": "logo",
+                    "type": "image",
+                    "instructions": "Opcional. Sin logo se muestra el isotipo de Match.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "sub_fields": [
+                        {
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": "",
+                            "key": "field_sol_cases_stats_value",
+                            "label": "Cifra",
+                            "name": "value",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "30",
+                                "class": "",
+                                "id": ""
+                            }
+                        },
+                        {
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": "",
+                            "key": "field_sol_cases_stats_label",
+                            "label": "Descripción",
+                            "name": "label",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "70",
+                                "class": "",
+                                "id": ""
+                            }
+                        }
+                    ],
+                    "min": 0,
+                    "max": 3,
+                    "layout": "table",
+                    "button_label": "Agregar cifra",
+                    "pagination": 0,
+                    "rows_per_page": 20,
+                    "key": "field_sol_cases_stats",
+                    "label": "Cifras del caso",
+                    "name": "stats",
+                    "type": "repeater",
+                    "instructions": "Opcional, hasta 3.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                }
+            ],
+            "min": 1,
+            "max": 0,
+            "layout": "block",
+            "button_label": "Agregar caso",
+            "pagination": 0,
+            "rows_per_page": 20,
+            "key": "field_sol_cases",
+            "label": "Casos",
+            "name": "cases",
+            "type": "repeater",
+            "instructions": "Carrusel del diferenciador. Con más de un caso aparecen flechas y puntos.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "sol_cases_role"
+        },
+        {
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0,
+            "key": "field_sol_tab_perfiles",
+            "label": "Perfiles",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "Los perfiles que",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_sol_levels_title",
+            "label": "Titular — línea 1",
+            "name": "levels_title",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "acompañamos.",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_sol_levels_title_2",
+            "label": "Titular — línea 2",
+            "name": "levels_title_2",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_sol_scope",
+            "label": "Alcance — parte destacada",
+            "name": "scope",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 2,
+            "new_lines": "",
+            "key": "field_sol_scope_2",
+            "label": "Alcance — continuación",
+            "name": "scope_2",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "choices": {
+                "": "Ninguno",
+                "isotipo-circle": "Isotipo",
+                "plus-circle": "Más (+)"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "allow_null": 0,
+            "layout": "horizontal",
+            "key": "field_sol_levels_icon",
+            "label": "Icono en tarjetas",
+            "name": "levels_icon",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "sub_fields": [
+                {
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "key": "field_sol_levels_label",
+                    "label": "Etiqueta",
+                    "name": "label",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "return_format": "url",
+                    "library": "all",
+                    "preview_size": "thumbnail",
+                    "min_width": "",
+                    "min_height": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "min_size": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "key": "field_sol_levels_photo",
+                    "label": "Foto",
+                    "name": "photo",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    }
+                }
+            ],
+            "min": 1,
+            "max": 6,
+            "layout": "table",
+            "button_label": "Agregar tarjeta",
+            "pagination": 0,
+            "rows_per_page": 20,
+            "key": "field_sol_levels",
+            "label": "Tarjetas",
+            "name": "levels",
+            "type": "repeater",
+            "instructions": "Con 2 o menos se apilan; con más forman grilla.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0,
+            "key": "field_sol_tab_clientes",
+            "label": "Clientes",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "choices": {
+                "mmg": "MMG",
+                "ferreycorp": "Ferreycorp",
+                "elektra": "Elektra",
+                "beat": "Beat",
+                "credicorp": "Credicorp",
+                "olx": "OLX",
+                "abb": "ABB",
+                "intercorp": "Intercorp",
+                "alfa-laval": "Alfa Laval",
+                "aenza": "Aenza"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "layout": "horizontal",
+            "toggle": 0,
+            "allow_custom": 0,
+            "save_custom": 0,
+            "key": "field_sol_clients",
+            "label": "Logos de clientes",
+            "name": "clients",
+            "type": "checkbox",
+            "instructions": "Grilla “Nuestros clientes” (se ve mejor en múltiplos de 3).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "(2020-26)",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_sol_years",
+            "label": "Rango de años",
+            "name": "years",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "30",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0,
+            "key": "field_sol_tab_testimonios",
+            "label": "Testimonios",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "sub_fields": [
+                {
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 4,
+                    "new_lines": "",
+                    "key": "field_sol_reviews_text",
+                    "label": "Testimonio",
+                    "name": "text",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "key": "field_sol_reviews_name",
+                    "label": "Nombre",
+                    "name": "name",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "key": "field_sol_reviews_role",
+                    "label": "Cargo · empresa, país",
+                    "name": "role",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "return_format": "url",
+                    "library": "all",
+                    "preview_size": "thumbnail",
+                    "min_width": "",
+                    "min_height": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "min_size": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "key": "field_sol_reviews_photo",
+                    "label": "Foto o logo",
+                    "name": "photo",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "40",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "default_value": "#e0e0e0",
+                    "enable_opacity": 0,
+                    "return_format": "string",
+                    "key": "field_sol_reviews_bg",
+                    "label": "Fondo de la foto",
+                    "name": "bg",
+                    "type": "color_picker",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "choices": {
+                        "cover": "Foto (cubrir)",
+                        "contain": "Logo (contener)"
+                    },
+                    "default_value": "cover",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "layout": "horizontal",
+                    "key": "field_sol_reviews_fit",
+                    "label": "Ajuste",
+                    "name": "fit",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    }
+                }
+            ],
+            "min": 0,
+            "max": 0,
+            "layout": "block",
+            "button_label": "Agregar testimonio",
+            "pagination": 0,
+            "rows_per_page": 20,
+            "key": "field_sol_reviews",
+            "label": "Testimonios",
+            "name": "reviews",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "sol_reviews_name"
+        },
+        {
+            "return_format": "url",
+            "library": "all",
+            "preview_size": "medium",
+            "min_width": "",
+            "min_height": "",
+            "max_width": "",
+            "max_height": "",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "",
+            "key": "field_sol_reviews_photo_dark",
+            "label": "Foto de la tarjeta final",
+            "name": "reviews_photo",
+            "type": "image",
+            "instructions": "Tarjeta oscura “¿Qué dicen nuestros clientes?”.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0,
+            "key": "field_sol_tab_contacto",
+            "label": "Contacto y aviso",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 2,
+            "new_lines": "",
+            "key": "field_sol_contact_lead",
+            "label": "Texto de contacto",
+            "name": "contact_lead",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "¿Buscas un perfil ejecutivo?",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "key": "field_sol_toast",
+            "label": "Pregunta del aviso flotante",
+            "name": "toast",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "template-solucion.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "field",
+    "hide_on_screen": [
+        "the_content",
+        "excerpt",
+        "discussion",
+        "comments",
+        "trackbacks"
+    ],
+    "active": true,
+    "description": "Contenido de las internas de solución (Executive, Outplacement y futuras). Los names replican las claves de inc/soluciones-data.php.",
+    "show_in_rest": true,
+    "modified": 1790009960
+}

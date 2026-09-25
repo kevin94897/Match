@@ -53,7 +53,7 @@ a { color: var(--match-primario-500); }
 	text-wrap: balance;
 }
 
-.match-h2 { font-size: var(--match-fs-h2); }
+.match-h2 { font-size: var(--match-fs-h2); letter-spacing: -0.02em; }
 .match-h2-xl { font-size: var(--match-fs-h2-xl); }
 
 /*
